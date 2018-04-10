@@ -4,6 +4,7 @@ require_once("db/db.php");
 require_once("controllers/torneos_controller.php");
 require_once("controllers/deportes_controller.php");
 require_once("controllers/comentarios_controller.php");
+require_once("controllers/jugadores_controller.php");
 
 if (isset($_GET['controller']) && isset($_GET['action']) ) {
 
@@ -53,10 +54,7 @@ if (isset($_GET['controller']) && isset($_GET['action']) ) {
         $controller->delete();
       }
 
-      // if ($_GET['action'] == "ordmarca") {
-      //   $controller = new deportes_controller();
-      //   $controller->ordmarca();
-      // }
+   
 
     }
 
@@ -81,9 +79,29 @@ if (isset($_GET['controller']) && isset($_GET['action']) ) {
         $controller = new comentarios_controller();
         $controller->delete();
       }
+    }
 
-      
+    if ($_GET['controller'] == "jugadores") {
 
+      if ($_GET['action'] == "view") {
+        $controller = new jugadores_controller();
+        $controller->view();
+      }
+
+      if ($_GET['action'] == "add") {
+        $controller = new jugadores_controller();
+        $controller->add();
+      }
+
+      if ($_GET['action'] == "insert") {
+        $controller = new jugadores_controller();
+        $controller->insert();
+      }
+
+      if ($_GET['action'] == "delete") {
+        $controller = new jugadores_controller();
+        $controller->delete();
+      }
     }
 
 } else {
