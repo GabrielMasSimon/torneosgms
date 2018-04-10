@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Torneos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    
+<?php include 'menu_view.html';?>
+
+    <div class="container">
+
+
+<h1>comentarios</h1>
+
+    <div class="row">
+        <div class="col-6">
+
+
+
+              <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Comentarios del partido</th>
+       
+      </tr>
+    </thead>
+    <tbody>
+    <?php
+                foreach ($datos as $dato) {
+                     echo "
+                     <tr>
+                     <td>{$dato['mensaje']}." .
+                     "<a href=\"index.php?controller=comentarios&action=delete&id={$dato['id_comentario']}\">Borrar</a><br/>
+                     </td>
+                     
+                   </tr>";
+                   
+                    }
+            ?>
+     
+    </tbody>
+  </table>
+            
+           
+        </div>
+
+        <div class="col-6">
+        <form action="index.php?controller=comentarios&action=insert" method="post">
+        <div class="form-group">
+            <label for="exampleTextarea">Añadir comentario</label>
+            <textarea class="form-control" id="exampleTextarea" name="mensaje" rows="3"></textarea>
+        </div>
+            
+        <button type="submit" class="btn btn-primary" name="insert" >Enviar</button>
+           
+        </form>
+        </div>
+
+    </div>
+
+ </div>
+
+</body>
+
+</html>
