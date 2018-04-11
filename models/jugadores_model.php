@@ -36,6 +36,38 @@ public function setNombre($nombre) {
   $this->nombre = $nombre;
 }
 
+public function getApellidos() {
+    return $this->apellidos;
+}
+  
+public function setApellidos($apellidos) {
+    $this->apellidos = $apellidos;
+}
+
+public function getEmail() {
+    return $this->email;
+}
+  
+public function setEmail($email) {
+    $this->email = $email;
+}
+
+public function getSexo() {
+    return $this->sexo;
+}
+  
+public function setSexo($sexo) {
+    $this->sexo = $sexo;
+}
+
+
+public function getId_equipo() {
+    return $this->id_equipo;
+}
+  
+public function setId_equipo($id_equipo) {
+    $this->id_equipo = $id_equipo;
+}
 
 
 
@@ -61,7 +93,7 @@ public function get_jugadores(){
 */
 public function insertar() {
 
-     $sql = "INSERT INTO jugadores (nombre) VALUES ('{$this->nombre}')";
+     $sql = "INSERT INTO jugadores (nombre, apellidos, email, sexo) VALUES ('{$this->nombre}','{$this->apellidos}','{$this->email}','{$this->sexo}')";
      $result = $this->db->query($sql);
 
      if ($this->db->error)

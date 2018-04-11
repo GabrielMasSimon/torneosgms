@@ -47,7 +47,7 @@ function insert() {
         $error = $jugador->insertar();
 
         if (!$error) {
-            header( "index.php?controller=jugadores&action=view");
+            header( "Location: index.php?controller=jugadores&action=view");
         }
         else {
             echo $error;
@@ -69,7 +69,7 @@ function delete() {
     $error = $jugador->delete($id);
 
     if (!$error) {
-        header( "index.php?controller=jugadores&action=view");
+        header( "Location: index.php?controller=jugadores&action=view");
     }
     else {
         echo $error;
