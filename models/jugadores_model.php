@@ -11,6 +11,7 @@ private $apellidos;
 private $email;
 private $sexo;
 private $id_equipo;
+private $dorsal;
 
 
 public function __construct(){
@@ -69,6 +70,14 @@ public function setId_equipo($id_equipo) {
     $this->id_equipo = $id_equipo;
 }
 
+public function getDorsal() {
+    return $this->dorsal;
+}
+  
+public function setDorsal($dorsal) {
+    $this->dorsal = $dorsal;
+}
+
 
 
 /**
@@ -93,7 +102,7 @@ public function get_jugadores(){
 */
 public function insertar() {
 
-     $sql = "INSERT INTO jugadores (nombre, apellidos, email, sexo) VALUES ('{$this->nombre}','{$this->apellidos}','{$this->email}','{$this->sexo}')";
+     $sql = "INSERT INTO jugadores (nombre, apellidos, email, sexo, dorsal) VALUES ('{$this->nombre}','{$this->apellidos}','{$this->email}','{$this->sexo}','{$this->dorsal}')";
      $result = $this->db->query($sql);
 
      if ($this->db->error)

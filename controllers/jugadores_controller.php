@@ -42,6 +42,7 @@ function insert() {
         $jugador->setApellidos( $_POST['apellidos'] );
         $jugador->setEmail( $_POST['email'] );
         $jugador->setSexo( $_POST['sexo'] );
+        $jugador->setDorsal( $_POST['dorsal'] );
       
 
         $error = $jugador->insertar();

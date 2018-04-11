@@ -3,16 +3,7 @@
 
 <head>
   <title>Clasificación</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
-    crossorigin="anonymous"></script>
-
-
+  <?php include 'head_view.html';?>
 </head>
 
 <body>
@@ -39,7 +30,7 @@
                   <i class="fas fa-arrow-down"></i>
                 </a>
               </th>
-              <th>Puntos
+              <th class="textoCentrado">Puntos
                 <a href="index.php?controller=equipos&action=ordPuntosDesc">
                   <i class="fas fa-arrow-down"></i>
                 </a>
@@ -47,7 +38,7 @@
                   <i class="fas fa-arrow-up"></i>
                 </a>
               </th>
-              <th>Eliminar</th>
+              <th class="textoCentrado">Eliminar</th>
 
             </tr>
           </thead>
@@ -59,12 +50,12 @@
                      <td>{$dato['nombre']}
                      </td>
 
-                     <td>
+                     <td class='textoCentrado'>
                      {$dato['puntos']}
                      </td>
 
 
-                     <td>
+                     <td class='textoCentrado'>
                      <a href=index.php?controller=equipos&action=delete&id={$dato['id_equipo']}><i class='fas fa-trash-alt'></i></a>
                     </td> 
  

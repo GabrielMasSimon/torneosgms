@@ -3,12 +3,7 @@
 
 <head>
   <title>jugadores</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <?php include 'head_view.html';?>
 </head>
 
 <body>
@@ -29,10 +24,11 @@
       <tr>
         <th>Nombre</th>
         <th>Apellidos</th>
+        <th class='textoCentrado'>Dorsal</th>
         <th>Email</th>
-        <th>Sexo</th>
-        <th>Equipo</th>
-        <th>Eliminar</th>
+        <th class='textoCentrado'>Sexo</th>
+        <th class='textoCentrado'>Equipo</th>
+        <th class='textoCentrado'>Eliminar</th>
        
       </tr>
     </thead>
@@ -48,19 +44,23 @@
                      {$dato['apellidos']}
                      </td>
 
+                     <td class='textoCentrado'>
+                     {$dato['dorsal']}
+                     </td>
+
                      <td>
                      {$dato['email']}
                      </td>
 
-                     <td>
+                     <td class='textoCentrado'>
                      {$dato['sexo']}
                      </td>
 
-                     <td>
+                     <td class='textoCentrado'>
                      {$dato['id_equipo']}
                      </td>
 
-                     <td>
+                     <td class='textoCentrado'>
                      <a href=\"index.php?controller=jugadores&action=delete&id={$dato['id_jugador']}\">X</a>
                      </td>
                      
@@ -105,17 +105,22 @@
                 </div>
                 
                 <div class="form-group">
-                  <label for="nombre">Apellidos:</label>
+                  <label for="apellidos">Apellidos:</label>
                   <input type="text" name="apellidos" value="">
                 </div>
 
                 <div class="form-group">
-                  <label for="nombre">Email:</label>
+                  <label for="email">Email:</label>
                   <input type="text" name="email" value="">
                 </div>
 
+                <div class="form-group">
+                  <label for="dorsal">Dorsal:</label>
+                  <input type="number" name="dorsal" value="">
+                </div>
+
                 <div class="form-group"> 
-                  <label for="nombre">Sexo:</label> 
+                  <label for="sexo">Sexo:</label> 
 
                    <div class="radio">
                      <label><input type="radio" name="sexo" value="M">Masculino</label>
