@@ -89,7 +89,7 @@ public function delete($id) {
  * Extreu tots els cotxes de la taula ordenats per marca
  * @return array Registres ordenats per marca
  */
-public function ordmarca(){
+public function ordPuntosDesc(){
     $consulta=$this->db->query("select * from deportes ORDER BY marca");
     while($filas=$consulta->fetch_assoc()){
         $this->deportes[]=$filas;

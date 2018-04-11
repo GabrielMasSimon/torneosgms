@@ -79,11 +79,11 @@ class deportes_controller {
  * Mostra els cotxes ordenats per marca
  * @return No
  */
-  function ordmarca() {
+  function ordPuntosDesc() {
     $deporte=new deportes_model();
 
     //Uso metodo del modelo de deportes
-    $datos=$deporte->ordmarca();
+    $datos=$deporte->ordPuntosDesc();
 
     //Llamado a la vista: mostrar la pantalla
     require_once("views/deportes_view.phtml");
