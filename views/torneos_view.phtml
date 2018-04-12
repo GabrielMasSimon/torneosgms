@@ -23,6 +23,7 @@
     <thead>
       <tr>
         <th>Listado de torneos</th>
+        <th class="textoCentrado">Eliminar</th>
        
       </tr>
     </thead>
@@ -31,9 +32,12 @@
                 foreach ($datos as $dato) {
                      echo "
                      <tr>
-                     <td>{$dato['nombre']}." .
-                     "<a href=\"index.php?controller=torneos&action=delete&id={$dato['id_torneo']}\">Borrar</a><br/>
+                     <td>{$dato['nombre']}
                      </td>
+
+                     <td class='textoCentrado'>
+                     <a href=index.php?controller=torneos&action=delete&id={$dato['id_torneo']}><i class='fas fa-trash-alt'></i></a>
+                    </td>
                      
                    </tr>";
                    

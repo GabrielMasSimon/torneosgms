@@ -14,6 +14,7 @@ private $id_equipo;
 private $dorsal;
 
 
+
 public function __construct(){
     $this->db=Conectar::conexion();
     $this->jugadores=array();
@@ -102,7 +103,7 @@ public function get_jugadores(){
 */
 public function insertar() {
 
-     $sql = "INSERT INTO jugadores (nombre, apellidos, email, sexo, dorsal) VALUES ('{$this->nombre}','{$this->apellidos}','{$this->email}','{$this->sexo}','{$this->dorsal}')";
+     $sql = "INSERT INTO jugadores (nombre, apellidos, email, sexo, dorsal, id_equipo) VALUES ('{$this->nombre}','{$this->apellidos}','{$this->email}','{$this->sexo}','{$this->dorsal}','{$this->id_equipo}')";
      $result = $this->db->query($sql);
 
      if ($this->db->error)

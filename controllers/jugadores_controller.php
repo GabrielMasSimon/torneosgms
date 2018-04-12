@@ -43,6 +43,7 @@ function insert() {
         $jugador->setEmail( $_POST['email'] );
         $jugador->setSexo( $_POST['sexo'] );
         $jugador->setDorsal( $_POST['dorsal'] );
+        $jugador->setId_Equipo( $_POST['id_equipo'] );
       
 
         $error = $jugador->insertar();

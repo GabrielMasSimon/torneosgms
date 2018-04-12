@@ -25,6 +25,7 @@
     <thead>
       <tr>
         <th>Comentarios del partido</th>
+        <th class="textoCentrado">Eliminar</th>
        
       </tr>
     </thead>
@@ -33,9 +34,12 @@
                 foreach ($datos as $dato) {
                      echo "
                      <tr>
-                     <td>{$dato['mensaje']}." .
-                     "<a href=\"index.php?controller=comentarios&action=delete&id={$dato['id_comentario']}\">Borrar</a><br/>
+                     <td>{$dato['mensaje']}
                      </td>
+
+                     <td class='textoCentrado'>
+                     <a href=index.php?controller=comentarios&action=delete&id={$dato['id_comentario']}><i class='fas fa-trash-alt'></i></a>
+                    </td>
                      
                    </tr>";
                    

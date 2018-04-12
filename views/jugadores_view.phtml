@@ -19,21 +19,21 @@
     <div class="row">
       <div class="col-8 table-responsive">
 
-         <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Apellidos</th>
-        <th class='textoCentrado'>Dorsal</th>
-        <th>Email</th>
-        <th class='textoCentrado'>Sexo</th>
-        <th class='textoCentrado'>Equipo</th>
-        <th class='textoCentrado'>Eliminar</th>
-       
-      </tr>
-    </thead>
-    <tbody>
-    <?php
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Apellidos</th>
+              <th class='textoCentrado'>Dorsal</th>
+              <th>Email</th>
+              <th class='textoCentrado'>Sexo</th>
+              <th class='textoCentrado'>Equipo</th>
+              <th class='textoCentrado'>Eliminar</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <?php
                 foreach ($datos as $dato) {
                      echo "
                      <tr>
@@ -61,16 +61,16 @@
                      </td>
 
                      <td class='textoCentrado'>
-                     <a href=\"index.php?controller=jugadores&action=delete&id={$dato['id_jugador']}\">X</a>
+                     <a href=\"index.php?controller=jugadores&action=delete&id={$dato['id_jugador']}\"><i class='fas fa-trash-alt'></i></a>
                      </td>
                      
                    </tr>";
                    
                     }
             ?>
-     
-    </tbody>
-  </table>
+
+          </tbody>
+        </table>
 
       </div>
 
@@ -98,39 +98,52 @@
               <!-- Modal body -->
               <div class="modal-body">
                 <form action="index.php?controller=jugadores&action=insert" method="post">
-                 
-                <div class="form-group">
-                  <label for="nombre">Nombre del jugador:</label>
-                  <input type="text" name="nombre" value="">
-                </div>
-                
-                <div class="form-group">
-                  <label for="apellidos">Apellidos:</label>
-                  <input type="text" name="apellidos" value="">
-                </div>
 
-                <div class="form-group">
-                  <label for="email">Email:</label>
-                  <input type="text" name="email" value="">
-                </div>
+                  <div class="form-group">
+                    <label for="nombre">Nombre del jugador:</label>
+                    <input type="text" name="nombre" value="">
+                  </div>
 
-                <div class="form-group">
-                  <label for="dorsal">Dorsal:</label>
-                  <input type="number" name="dorsal" value="">
-                </div>
+                  <div class="form-group">
+                    <label for="apellidos">Apellidos:</label>
+                    <input type="text" name="apellidos" value="">
+                  </div>
 
-                <div class="form-group"> 
-                  <label for="sexo">Sexo:</label> 
+                  <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" value="">
+                  </div>
 
-                   <div class="radio">
-                     <label><input type="radio" name="sexo" value="M">Masculino</label>
-                   </div>
-                   <div class="radio">
-                    <label><input type="radio" name="sexo" value="F">Femenino</label>
-                   </div>
-                </div>
-                  
-                  
+                  <div class="form-group">
+                    <label for="id_equipo">Equipo:</label>
+                    <select name="id_equipo">
+
+                      <option>Ninguno </option>
+                      <option value=1>Equipo A </option>
+
+
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="dorsal">Dorsal:</label>
+                    <input type="number" name="dorsal" value="">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="sexo">Sexo:</label>
+
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="sexo" value="M">Masculino</label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="sexo" value="F">Femenino</label>
+                    </div>
+                  </div>
+
+
 
                   <button type="submit" class="btn btn-success" name="insert">Guardar</button>
 
