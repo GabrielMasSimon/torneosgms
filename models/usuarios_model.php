@@ -1,100 +1,97 @@
 <?php
-class usuarios_model {
+class usuarios_model{
 
-private $db;
+  private $db;
+  private $usuarios;
 
-private $username;
-private $password;
 
-public function __construct(){
+  private $usuario;
+  private $password;
+  private $nombre;
+
+
+  public function __construct(){
     $this->db=Conectar::conexion();
-}
+    $this->usuarios=array();
+  }
 
-/* GETTERS & SETTERS */
-public function getUsername() {
-  return $this->username;
-}
+  /* GETTERS & SETTERS */
 
-public function setUsername($username) {
-  $this->username = $username;
-}
+  public function getUsuario() {
+    return $this->usuario;
+  }
 
-public function getPassword() {
-  return $this->password;
-}
+  public function setUsuario($usuario) {
+    $this->usuario = $usuario;
+  }
 
-public function setPassword($password) {
-  $this->password = $password;
-}
+  public function getPassword() {
+    return $this->password;
+  }
 
+  public function setPassword($password) {
+    $this->password = $password;
+  }
 
-/**
-* Comprovar si el usuario ha hecho bien el login
-* @return [false]  si no hi ha hagut cap error,
-*         [string] amb text d'error si no ha anat bé
-*/
-public function insertar() {
+  public function getNombre() {
+    return $this->nombre;
+  }
 
-     $sql = "INSERT INTO torneos (nombre, edad) VALUES ('{$this->nombre}','{$this->edad}')";
-     $result = $this->db->query($sql);
-
-     if ($this->db->error)
-         return "$sql<br>{$this->db->error}";
-     else {
-         return false;
-     }
-}
-}
+  public function setNombre($nombre) {
+    $this->nombre = $nombre;
+  }
 
 
 
-/**
-* Extreu totes les persones de la taula
-* @return array Bidimensional de totes les persones
-*/
-public function get_torneos(){
-    $consulta=$this->db->query("select * from torneos;");
-    while($filas=$consulta->fetch_assoc()){
-        $this->torneos[]=$filas;
-    }
-    return $this->torneos;
-}
 
 
-/**
-* Inserta un registre a la taula
-* @return [false]  si no hi ha hagut cap error,
-*         [string] amb text d'error si no ha anat bé
-*/
-public function insertar() {
 
-     $sql = "INSERT INTO torneos (nombre, edad) VALUES ('{$this->nombre}','{$this->edad}')";
-     $result = $this->db->query($sql);
+  /**
+  * Inserta un registre a la taula
+  * @return [false]  si no hi ha hagut cap error,
+  *         [string] amb text d'error si no ha anat bé
+  */
+  public function insertar() {
+    $salt = "$1$encriptat";
+    $hashed_password = crypt($this->password, $salt);
 
-     if ($this->db->error)
-         return "$sql<br>{$this->db->error}";
-     else {
-         return false;
-     }
-}
-
-
-/**
-* Esborra un registre de la taula
-* @param  int $id Identificador del registre
-* @return [false]  si no hi ha hagut cap error,
-*         [string] amb text d'error si no ha anat bé
-*/
-public function delete($id) {
-    $sql = "DELETE FROM torneos WHERE id='$id'";
-
+    $sql = "INSERT INTO usuarios (usuario, password, nombre) VALUES ('{$this->usuario}','{$hashed_password}','{$this->nombre}')";
     $result = $this->db->query($sql);
 
+    $_SESSION["usuario"] = $this->usuario;
+
     if ($this->db->error)
-        return "$sql<br>{$this->db->error}";
+    return "$sql<br>{$this->db->error}";
     else {
-        return false;
+      return false;
     }
-}
+  }
+
+  //Función para buscar un usuario y su contraseña en la base de datos
+  public function buscar_usuarios(){
+
+
+    // $usuarioactual = $_SESSION["usuario"];
+
+    $sql = "SELECT usuario, PASSWORD FROM usuarios WHERE usuario = '{$this->usuario}';";
+    $result = $this->db->query($sql);
+    $row = mysqli_fetch_assoc($result);
+    $valid_password = password_verify($this->password, $row['PASSWORD']);
+
+
+    if($result->num_rows > 0) {
+      if ($valid_password) {
+        return true;
+      } else {
+      
+        return false;
+      }
+    } else {
+      return false;
+    }
+
+
+  }
+
 }
 ?>

@@ -8,7 +8,7 @@
 
 <body>
 
-  <?php include 'menu_view.html';?>
+  <?php include 'menu_view.phtml';?>
 
 
   <div class="container">
@@ -114,12 +114,15 @@
                     <input type="email" name="email" value="">
                   </div>
 
+
                   <div class="form-group">
                     <label for="id_equipo">Equipo:</label>
                     <select name="id_equipo">
 
-                      <option>Ninguno </option>
-                      <option value=1>Equipo A </option>
+                      <?php
+            foreach ($datosequipos as $datosequipo) {
+              echo "<option value={$datosequipo['id_equipo']}>{$datosequipo['nombre']} </option>";
+            }  ?>
 
 
                     </select>

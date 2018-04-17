@@ -1,4 +1,8 @@
 <?php
+
+//Inicia sesion para poder usar session
+session_start();
+
 require_once("db/db.php");
 
 require_once("controllers/torneos_controller.php");
@@ -6,6 +10,7 @@ require_once("controllers/deportes_controller.php");
 require_once("controllers/comentarios_controller.php");
 require_once("controllers/jugadores_controller.php");
 require_once("controllers/equipos_controller.php");
+require_once("controllers/usuarios_controller.php");
 
 if (isset($_GET['controller']) && isset($_GET['action']) ) {
 
@@ -103,6 +108,13 @@ if (isset($_GET['controller']) && isset($_GET['action']) ) {
         $controller = new jugadores_controller();
         $controller->delete();
       }
+
+        //action para ver los equipos
+    if ($_GET['action'] == "equiposView") {
+      $controller = new jugadores_controller();
+      $controller->equiposView();
+    }
+
     }
 
     if ($_GET['controller'] == "equipos") {
@@ -148,6 +160,43 @@ if (isset($_GET['controller']) && isset($_GET['action']) ) {
       }
 
     }
+
+    // Conroller de usuarios
+  if ($_GET['controller'] == "usuarios") {
+
+    //action para añadir usuarios
+    if ($_GET['action'] == "registroView") {
+      $controller = new usuarios_controller();
+      $controller->registroView();
+    }
+
+    //action para hacer login de usuarios
+    if ($_GET['action'] == "loginView") {
+      $controller = new usuarios_controller();
+      $controller->loginView();
+    }
+
+    //Action para insertar usuarios
+    if ($_GET['action'] == "insert") {
+      $controller = new usuarios_controller();
+      $controller->insert();
+    }
+
+    //Action para hacer login
+    if ($_GET['action'] == "login") {
+      $controller = new usuarios_controller();
+      $controller->login();
+    }
+
+    //Action para hacer logout
+    if ($_GET['action'] == "logout") {
+      $controller = new usuarios_controller();
+      $controller->logout();
+    }
+
+
+  }
+
 
 } else {
    $controller = new torneos_controller();

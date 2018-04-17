@@ -26,8 +26,22 @@ function view() {
 
   //Llamado a la vista: mostrar la pantalla
   require_once("views/jugadores_view.phtml");
+
+  
+
+    $jugador=new jugadores_model();
+    $datosequipos=$jugador->get_equipoView(); //Coge las marcas
 }
 
+ //para ver los equipos
+ function equiposView(){
+
+    $jugador=new jugadores_model();
+    $datosequipos=$jugador->get_equiposView();
+
+    require_once("views/jugadores_view.phtml");
+
+  }
 
 /**
  * Inserta a la taula

@@ -95,6 +95,18 @@ public function get_jugadores(){
     return $this->jugadores;
 }
 
+/**
+ * Extrae todos los equipos de la tabla
+* @return array Bidimensional de todos los equipos
+*/
+ public function get_equiposView(){
+
+    $consulta=$this->db->query("select * from equipos");
+    while($filas=$consulta->fetch_assoc()){
+      $this->equipos[]=$filas;
+    }
+    return $this->equipos;
+  }
 
 /**
 * Inserta un registro en la tabla
@@ -103,7 +115,15 @@ public function get_jugadores(){
 */
 public function insertar() {
 
-     $sql = "INSERT INTO jugadores (nombre, apellidos, email, sexo, dorsal, id_equipo) VALUES ('{$this->nombre}','{$this->apellidos}','{$this->email}','{$this->sexo}','{$this->dorsal}','{$this->id_equipo}')";
+
+    if ($this->id_equipo == "Ninguno") {
+        $sql = "INSERT INTO jugadores (nombre, apellidos, email, sexo, dorsal) VALUES ('{$this->nombre}','{$this->apellidos}','{$this->email}','{$this->sexo}','{$this->dorsal}')";
+      }else {
+        $sql = "INSERT INTO jugadores (nombre, apellidos, email, sexo, dorsal, id_equipo) VALUES ('{$this->nombre}','{$this->apellidos}','{$this->email}','{$this->sexo}','{$this->dorsal}','{$this->id_equipo}')";
+      }
+
+
+    
      $result = $this->db->query($sql);
 
      if ($this->db->error)
