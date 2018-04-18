@@ -65,8 +65,8 @@
         <div class="col-6">
 
         <h3>Información de partido</h3>
-        <h4 id="local"></h4> <h4>puntos local</h4>
-       <h4 id="visitante"></h4>  <h4>puntos visitante</h4>
+        <h4 id="local">Equipo Local</h4> <h4 id="verGolLocal">0</h4>
+       <h4 id="visitante">Equipo Visitante</h4>  <h4 id="verGolVisitante">0</h4>
 
        <h3>Creación de partido</h3>
 
@@ -94,22 +94,54 @@
             </select><br><br>
             
             <button onclick="crearPartido()">Crear partido</button>
+           
                   </div>
                   
-                 
+                  <button onclick="añadirGolLocal()">Añadir gol local</button>
+                  <button onclick="eliminarGolLocal()">Eliminar gol Local</button>
+                  <button onclick="añadirGolVisitante()">Añadir gol visitante</button>
+                  <button onclick="eliminarGolVisitante()">Eliminar gol visitante</button>
+                  
 
 <script>
+//Variables globales
+var golVisitante = 0;
+var golLocal = 0 ;
+
 
 function crearPartido(){
     
-var seleccionadoVisitante = document.getElementById('id_equipoVisitante').value;
-document.getElementById("visitante").innerHTML ="Equipo visitante "+ seleccionadoVisitante; 
+    var seleccionadoVisitante = document.getElementById('id_equipoVisitante').value;
+    document.getElementById("visitante").innerHTML ="Equipo visitante "+ seleccionadoVisitante; 
 
-var seleccionadoLocal = document.getElementById('id_equipoLocal').value;
-document.getElementById("local").innerHTML ="Equipo local "+ seleccionadoLocal; 
+    var seleccionadoLocal = document.getElementById('id_equipoLocal').value;
+    document.getElementById("local").innerHTML ="Equipo local "+ seleccionadoLocal; 
+}
 
+
+function añadirGolVisitante(){
+    golVisitante = golVisitante + 1 ;
+    document.getElementById("verGolVisitante").innerHTML = golVisitante; 
 
 }
+
+function eliminarGolVisitante(){
+    golVisitante = golVisitante - 1 ;
+    document.getElementById("verGolVisitante").innerHTML = golVisitante; 
+
+}
+
+function añadirGolLocal(){
+    golLocal = golLocal + 1 ;
+    document.getElementById("verGolLocal").innerHTML = golLocal; 
+
+}
+function eliminarGolLocal(){
+    golLocal = golLocal - 1 ;
+    document.getElementById("verGolLocal").innerHTML = golLocal; 
+
+}
+
 </script>
 
         <h3>Insetar goles</h3>
