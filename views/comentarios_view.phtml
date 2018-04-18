@@ -48,12 +48,8 @@
      
     </tbody>
   </table>
-            
-           
-        </div>
-
-        <div class="col-6">
-        <form action="index.php?controller=comentarios&action=insert" method="post">
+            <!-- Añadir comentarios -->
+  <form action="index.php?controller=comentarios&action=insert" method="post">
         <div class="form-group">
             <label for="exampleTextarea">Añadir comentario</label>
             <textarea class="form-control" id="exampleTextarea" name="mensaje" rows="3"></textarea>
@@ -62,12 +58,69 @@
         <button type="submit" class="btn btn-primary" name="insert" >Enviar</button>
            
         </form>
+        <!-- Fin añadir comentarios -->
+           
         </div>
 
+        <div class="col-6">
+
+        <h3>Información de partido</h3>
+        <h4 id="local"></h4> <h4>puntos local</h4>
+       <h4 id="visitante"></h4>  <h4>puntos visitante</h4>
+
+       <h3>Creación de partido</h3>
+
+
+
+
+       <div class="form-group">
+             <label>Equipo local:</label>
+            <select id="id_equipoLocal" name="id_equipoLocal">
+                <option value="Mallorca">Mallorca </option>
+                <option value="Menorca">Menorca </option>
+                <option value="Ibiza">Ibiza </option>
+                <option value="Formentera">Formentera </option>
+            </select>
+        </div>
+            
+
+    <div class="form-group">
+             <label >Equipo visitante:</label>
+            <select id="id_equipoVisitante" name="id_equipoVisitante">
+                <option value="Mallorca">Mallorca </option>
+                <option value="Menorca">Menorca </option>
+                <option value="Ibiza">Ibiza </option>
+                <option value="Formentera">Formentera </option>
+            </select><br><br>
+            
+            <button onclick="crearPartido()">Crear partido</button>
+                  </div>
+                  
+                 
+
+<script>
+
+function crearPartido(){
+    
+var seleccionadoVisitante = document.getElementById('id_equipoVisitante').value;
+document.getElementById("visitante").innerHTML ="Equipo visitante "+ seleccionadoVisitante; 
+
+var seleccionadoLocal = document.getElementById('id_equipoLocal').value;
+document.getElementById("local").innerHTML ="Equipo local "+ seleccionadoLocal; 
+
+
+}
+</script>
+
+        <h3>Insetar goles</h3>
+        <h4>Equipo local</h4> <h4>puntos local</h4>
+        <h4>Equipo visitante</h4>  <h4>puntos visitante</h4>
+
+        </div>
+
+
     </div>
-
  </div>
-
 </body>
 
 </html>

@@ -41,20 +41,18 @@ function insert() {
         $error = $usuarios->insertar();
 
         if (!$error) {
-          $usuario = $_POST['nombre'];
+          $usuario = $_POST['usuario'];
           $usuarios = new usuarios_model();
           $usuarios->setUsernombre( $usuario );
 
           $error = $usuarios->buscar_usuarios();
           if ($error) {
-            $_SESSION['nombre'] = $usuario;
-            echo "usuario existente"; exit;
+            $_SESSION['usuario'] = $usuario;
+            echo "usuario existente"; 
           }else {
             header( "Location: index.php");
 
           }
-
-
         }
         else {
             echo $error;
