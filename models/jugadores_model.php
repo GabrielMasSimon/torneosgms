@@ -86,7 +86,7 @@ public function setDorsal($dorsal) {
 * @return array Bidimensional de todos los jugadores
 */
 public function get_jugadores(){
-    $consulta=$this->db->query("select * from jugadores;");
+    $consulta=$this->db->query("SELECT *,equipos.nombre as nombreequipo, jugadores.nombre as nombrejugador FROM jugadores JOIN equipos ON jugadores.id_equipo = equipos.id_equipo;");
 
     while($filas=$consulta->fetch_assoc()){
         $this->jugadores[]=$filas;

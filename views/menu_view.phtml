@@ -47,7 +47,7 @@
             <a class="nav-link" href="index.php?controller=usuarios&action=loginView">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"><?php echo $_SESSION['usuario']; ?></a>
+            <a class="nav-link" href="#"><?php if (isset ($_SESSION['usuario'])) { echo $_SESSION['usuario']; } ?></a>
           </li>
           </ul>
         </div> 

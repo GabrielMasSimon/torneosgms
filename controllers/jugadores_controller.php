@@ -1,6 +1,7 @@
 <?php
 //Llamada al modelo
 require_once("models/jugadores_model.php");
+require_once("models/equipos_model.php");
 
 
 class jugadores_controller {
@@ -24,13 +25,13 @@ function view() {
   //Uso metodo del modelo de jugadores
   $datos=$jugador->get_jugadores();
 
+ $equipo=new equipos_model();
+
+  //Uso metodo del modelo de equipos
+  $datosequipos=$equipo->get_equipos();
+
   //Llamado a la vista: mostrar la pantalla
   require_once("views/jugadores_view.phtml");
-
-  
-
-    $jugador=new jugadores_model();
-    $datosequipos=$jugador->get_equipoView(); //Coge las marcas
 }
 
  //para ver los equipos
