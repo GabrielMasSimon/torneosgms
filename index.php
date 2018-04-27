@@ -38,6 +38,16 @@ if (isset($_GET['controller']) && isset($_GET['action']) ) {
 
     }
 
+    if ($_GET['controller'] == "home") {
+
+      if ($_GET['action'] == "view") {
+        $controller = new home_controller();
+        $controller->view();
+      }
+
+ }
+
+
     if ($_GET['controller'] == "deportes") {
 
       if ($_GET['action'] == "view") {
@@ -84,6 +94,11 @@ if (isset($_GET['controller']) && isset($_GET['action']) ) {
       if ($_GET['action'] == "delete") {
         $controller = new comentarios_controller();
         $controller->delete();
+      }
+
+      if ($_GET['action'] == "finalizarPartido") {
+        $controller = new comentarios_controller();
+        $controller->finalizarPartido();
       }
     }
 
@@ -199,7 +214,10 @@ if (isset($_GET['controller']) && isset($_GET['action']) ) {
 
 
 } else {
-   $controller = new torneos_controller();
-   $controller->view();
+
+  
+
+    $controller = new torneos_controller();
+    $controller->view();
 }
 ?>

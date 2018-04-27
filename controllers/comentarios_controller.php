@@ -39,8 +39,6 @@ function insert() {
     if (isset($_POST['insert'])) {
 
         $comentario->setMensaje( $_POST['mensaje'] );
-      
-
         $error = $comentario->insertar();
 
         if (!$error) {
@@ -72,6 +70,20 @@ function delete() {
         echo $error;
     }
   }
+}
+
+function finalizarPartido(){
+    $comentario=new comentarios_model();
+
+    $error = $comentario->get_finalizarPartido();
+
+    if (!$error) {
+        header( "Location: index.php?controller=comentarios&action=view");
+    }
+    else {
+        echo $error;
+    }
+
 }
 
 }

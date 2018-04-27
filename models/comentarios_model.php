@@ -85,5 +85,23 @@ public function delete($id) {
         return false;
     }
 }
+
+
+/**
+ *Elimina todos los comentarios de la tabla
+* @return array Bidimensional de todos los comentarios
+*/
+public function get_finalizarPartido(){
+    $consulta=$this->db->query("TRUNCATE TABLE comentarios;");
+
+    $result = $this->db->query($sql);
+
+    if ($this->db->error)
+        return "$sql<br>{$this->db->error}";
+    else {
+        return false;
+    }
+}
+
 }
 ?>
