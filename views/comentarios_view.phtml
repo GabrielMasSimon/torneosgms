@@ -8,29 +8,29 @@
 
 <body>
 
-    
-<?php include 'menu_view.phtml';?>
+
+    <?php include 'menu_view.phtml';?>
 
     <div class="container">
 
 
-<h2>comentarios</h2>
+        <h2>comentarios</h2>
 
-    <div class="row">
-        <div class="col-6">
+        <div class="row">
+            <div class="col-6">
 
 
 
-              <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Comentarios del partido</th>
-        <th class="textoCentrado">Eliminar</th>
-       
-      </tr>
-    </thead>
-    <tbody>
-    <?php
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Comentarios del partido</th>
+                            <th class="textoCentrado">Eliminar</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
                 foreach ($datos as $dato) {
                      echo "
                      <tr>
@@ -45,114 +45,123 @@
                    
                     }
             ?>
-     
-    </tbody>
-  </table>
-            <!-- Añadir comentarios -->
-  <form action="index.php?controller=comentarios&action=insert" method="post">
-        <div class="form-group">
-            <label for="exampleTextarea">Añadir comentario</label>
-            <textarea class="form-control" id="exampleTextarea" name="mensaje" rows="3"></textarea>
-        </div>
-            
-        <button type="submit" class="btn btn-primary" name="insert" >Enviar</button>
-           
-        </form>
-        <!-- Fin añadir comentarios -->
-        <a href='index.php?controller=comentarios&action=finalizarPartido'>Borrar todos los mensajes</a>
-        </div>
 
-        <div class="col-6">
+                    </tbody>
+                </table>
+                <!-- Añadir comentarios -->
+                <form action="index.php?controller=comentarios&action=insert" method="post">
+                    <div class="form-group">
+                        <label for="exampleTextarea">Añadir comentario</label>
+                        <textarea class="form-control" id="exampleTextarea" name="mensaje" rows="3"></textarea>
+                    </div>
 
-        <h3>Información de partido</h3>
-        <h4 id="local">Equipo Local</h4> <h4 id="verGolLocal">0</h4>
-       <h4 id="visitante">Equipo Visitante</h4>  <h4 id="verGolVisitante">0</h4>
+                    <button type="submit" class="btn btn-primary" name="insert">Enviar</button>
 
-       <h3>Creación de partido</h3>
+                </form>
+                <!-- Fin añadir comentarios -->
+                <a href='index.php?controller=comentarios&action=finalizarPartido'>Borrar todos los mensajes</a>
+            </div>
 
+            <div class="col-6">
 
+                <div>
+                <h3>Información de partido</h3>
+                    <h4 id="local">Equipo Local</h4>
+                    <h4 id="verGolLocal">0</h4>
+                    <h4 id="visitante">Equipo Visitante</h4>
+                    <h4 id="verGolVisitante">0</h4>
+                </div>
 
+                <div>
+                <h3>Creación de partido</h3>
 
-       <div class="form-group">
-             <label>Equipo local:</label>
-            <select id="id_equipoLocal" name="id_equipoLocal">
-                <option value="Mallorca">Mallorca </option>
-                <option value="Menorca">Menorca </option>
-                <option value="Ibiza">Ibiza </option>
-                <option value="Formentera">Formentera </option>
-            </select>
-        </div>
-            
+                <!-- //TODO no crear partidos con puntos, si no crear un formulario que coja  los nombres 
+                // y crear otro formulario para elegir los equipos y ponerle los puntos que queramos -->
 
-    <div class="form-group">
-             <label >Equipo visitante:</label>
-            <select id="id_equipoVisitante" name="id_equipoVisitante">
-                <option value="Mallorca">Mallorca </option>
-                <option value="Menorca">Menorca </option>
-                <option value="Ibiza">Ibiza </option>
-                <option value="Formentera">Formentera </option>
-            </select><br><br>
-            
-            <button onclick="crearPartido()">Crear partido</button>
-           
-                  </div>
-                  
-                  <button onclick="añadirGolLocal()">Añadir gol local</button>
-                  <button onclick="eliminarGolLocal()">Eliminar gol Local</button>
-                  <button onclick="añadirGolVisitante()">Añadir gol visitante</button>
-                  <button onclick="eliminarGolVisitante()">Eliminar gol visitante</button>
-                  
+                    <div class="form-group">
+                        <label for="id_equipoLocal">Equipo visitante:</label>
+                        <select id="id_equipoLocal" name="id_equipoLocal">
 
-<script>
-//Variables globales
-var golVisitante = 0;
-var golLocal = 0 ;
+                            <?php
+                            foreach ($datosequipos as $datosequipo) {
+                            echo "<option value={$datosequipo['id_equipo']}>{$datosequipo['nombre']} </option>";
+                            }  ?>
+                        </select>
+                    </div>
 
+                    <div class="form-group">
+                        <label for="id_equipoVisitante">Equipo visitante:</label>
+                        <select id="id_equipoVisitante" name="id_equipoVisitante">
 
-function crearPartido(){
-    
-    var seleccionadoVisitante = document.getElementById('id_equipoVisitante').value;
-    document.getElementById("visitante").innerHTML ="Equipo visitante "+ seleccionadoVisitante; 
+                            <?php
+                            foreach ($datosequipos as $datosequipo) {
+                            echo "<option value={$datosequipo['id_equipo']}>{$datosequipo['nombre']} </option>";
+                            }  ?>
+                        </select>
+                    </div>
 
-    var seleccionadoLocal = document.getElementById('id_equipoLocal').value;
-    document.getElementById("local").innerHTML ="Equipo local "+ seleccionadoLocal; 
-}
+                    <br>
+                    <br>
+
+                    <button onclick="crearPartido()">Crear partido</button>
+                </div>
+
+            </div>
+
+            <button onclick="añadirGolLocal()">Añadir gol local</button>
+            <button onclick="eliminarGolLocal()">Eliminar gol Local</button>
+            <button onclick="añadirGolVisitante()">Añadir gol visitante</button>
+            <button onclick="eliminarGolVisitante()">Eliminar gol visitante</button>
 
 
-function añadirGolVisitante(){
-    golVisitante = golVisitante + 1 ;
-    document.getElementById("verGolVisitante").innerHTML = golVisitante; 
+            <script>
+                //Variables globales
+                var golVisitante = 0;
+                var golLocal = 0;
 
-}
 
-function eliminarGolVisitante(){
-    golVisitante = golVisitante - 1 ;
-    document.getElementById("verGolVisitante").innerHTML = golVisitante; 
+                function crearPartido() {
 
-}
+                    var seleccionadoVisitante = document.getElementById('id_equipoVisitante').value;
+                    document.getElementById("visitante").innerHTML = "Equipo visitante " + seleccionadoVisitante;
 
-function añadirGolLocal(){
-    golLocal = golLocal + 1 ;
-    document.getElementById("verGolLocal").innerHTML = golLocal; 
+                    var seleccionadoLocal = document.getElementById('id_equipoLocal').value;
+                    document.getElementById("local").innerHTML = "Equipo local " + seleccionadoLocal;
+                }
 
-}
-function eliminarGolLocal(){
-    golLocal = golLocal - 1 ;
-    document.getElementById("verGolLocal").innerHTML = golLocal; 
 
-}
+                function añadirGolVisitante() {
+                    golVisitante = golVisitante + 1;
+                    document.getElementById("verGolVisitante").innerHTML = golVisitante;
 
-</script>
+                }
 
-        <h3>Insetar goles</h3>
-        <h4>Equipo local</h4> <h4>puntos local</h4>
-        <h4>Equipo visitante</h4>  <h4>puntos visitante</h4>
+                function eliminarGolVisitante() {
+                    golVisitante = golVisitante - 1;
+                    document.getElementById("verGolVisitante").innerHTML = golVisitante;
+
+                }
+
+                function añadirGolLocal() {
+                    golLocal = golLocal + 1;
+                    document.getElementById("verGolLocal").innerHTML = golLocal;
+
+                }
+                function eliminarGolLocal() {
+                    golLocal = golLocal - 1;
+                    document.getElementById("verGolLocal").innerHTML = golLocal;
+
+                }
+
+            </script>
+
+
 
         </div>
 
 
     </div>
- </div>
+    </div>
 </body>
 
 </html>

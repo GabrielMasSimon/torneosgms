@@ -100,6 +100,13 @@ if (isset($_GET['controller']) && isset($_GET['action']) ) {
         $controller = new comentarios_controller();
         $controller->finalizarPartido();
       }
+
+    //action para ver los equipos
+    if ($_GET['action'] == "equiposView") {
+      $controller = new comentarios_controller();
+      $controller->equiposView();
+    }
+
     }
 
     if ($_GET['controller'] == "jugadores") {

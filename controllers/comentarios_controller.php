@@ -24,10 +24,26 @@ function view() {
   //Uso metodo del modelo de comentarios
   $datos=$comentario->get_comentarios();
 
+  $equipo=new equipos_model();
+
+  //Uso metodo del modelo de equipos
+  $datosequipos=$equipo->get_equipos();
+
+
   //Llamado a la vista: mostrar la pantalla
   require_once("views/comentarios_view.phtml");
 }
 
+//para ver los equipos
+function equiposView(){
+
+    $comentario=new comentarios_model();
+    $datosequipos=$comentario->get_equiposView();
+
+  require_once("views/comentarios_view.phtml");
+ 
+
+  }
 
 /**
  * Inserta a la taula
