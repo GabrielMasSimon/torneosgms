@@ -7,6 +7,9 @@ private $comentarios;
 
 private $id;
 private $mensaje;
+private $idPartido;
+private $equipoLocal;
+private $equipoVisitante;
 
 
 public function __construct(){
@@ -31,6 +34,30 @@ public function getMensaje() {
 public function setMensaje($mensaje) {
   $this->mensaje = $mensaje;
 }
+
+public function getIdPartido() {
+    return $this->idPartido;
+  }
+  
+public function setIdPartido($idPartido) {
+    $this->idPartido = $idPartido;
+  }
+
+public function getEquipoLocal() {
+    return $this->equipoLocal;
+  }
+  
+public function setEquipoLocal($equipoLocal) {
+    $this->equipoLocal = $equipoLocal;
+  }
+
+  public function getEquipoVisitante() {
+    return $this->equipoLocal;
+  }
+  
+public function setEquipoVisitante($equipoVisitante) {
+    $this->equipoVisitante = $equipoVisitante;
+  }
 
 
 
@@ -67,6 +94,23 @@ public function insertar() {
      }
 }
 
+/**
+* Inserta un registro en la tabla
+* @return [false]  si no hay errores,
+*         [string] con texto de error si no ha ido bien
+*/
+public function crearPartido() {
+
+    $sql = "INSERT INTO partidos (equipo_local, equipo_visitante) VALUES ('{$this->equipoLocal}','{$this->equipoVisitante}')";
+    $result = $this->db->query($sql);
+
+    if ($this->db->error)
+        return "$sql<br>{$this->db->error}";
+    else {
+        return false;
+    }
+}
+
 
 /**
 * Esborra un registre de la taula
@@ -92,7 +136,8 @@ public function delete($id) {
 * @return array Bidimensional de todos los comentarios
 */
 public function get_finalizarPartido(){
-    $consulta=$this->db->query("TRUNCATE TABLE comentarios;");
+
+ $consulta=$this->db->query("TRUNCATE TABLE comentarios;");
 
     $result = $this->db->query($sql);
 

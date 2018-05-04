@@ -107,6 +107,11 @@ if (isset($_GET['controller']) && isset($_GET['action']) ) {
       $controller->equiposView();
     }
 
+    if ($_GET['action'] == "crearPartido") {
+      $controller = new comentarios_controller();
+      $controller->crearPartido();
+    }
+
     }
 
     if ($_GET['controller'] == "jugadores") {

@@ -66,6 +66,31 @@ function insert() {
     }
 }
 
+/**
+ * Inserta a la taula
+ * @return No
+ */
+ function crearPartido() {
+    $comentario=new comentarios_model();
+
+    if (isset($_POST['insert'])) {
+
+       
+        $comentario->setEquipoLocal( $_POST['equipoLocal'] );
+        $comentario->setEquipoVisitante( $_POST['equipoVisitante'] );
+
+        $error = $comentario->crearPartido();
+
+        if (!$error) {
+            
+            header( "Location: index.php?controller=comentarios&action=view");
+        }
+        else {
+            echo $error;
+        }
+    }
+}
+
 
 /**
  * Elimina una fila de la taula

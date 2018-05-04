@@ -73,37 +73,40 @@
                 </div>
 
                 <div>
-                <h3>Creación de partido</h3>
+                    <h3>Creación de partido</h3>
 
-                <!-- //TODO no crear partidos con puntos, si no crear un formulario que coja  los nombres 
-                // y crear otro formulario para elegir los equipos y ponerle los puntos que queramos -->
+                    <!-- //TODO no crear partidos con puntos, si no crear un formulario que coja  los nombres 
+                    // y crear otro formulario para elegir los equipos y ponerle los puntos que queramos -->
 
-                    <div class="form-group">
-                        <label for="id_equipoLocal">Equipo visitante:</label>
-                        <select id="id_equipoLocal" name="id_equipoLocal">
+                    <form action="index.php?controller=comentarios&action=crearPartido" method="post">
+                        <div class="form-group">
+                            <label for="equipoLocal">Equipo Local:</label>
+                            <select id="equipoLocal" name="equipoLocal">
 
-                            <?php
-                            foreach ($datosequipos as $datosequipo) {
-                            echo "<option value={$datosequipo['id_equipo']}>{$datosequipo['nombre']} </option>";
-                            }  ?>
-                        </select>
-                    </div>
+                                <?php
+                                foreach ($datosequipos as $datosequipo) {
+                                echo "<option value={$datosequipo['id_equipo']}>{$datosequipo['nombre']} </option>";
+                                }  ?>
+                            </select>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="id_equipoVisitante">Equipo visitante:</label>
-                        <select id="id_equipoVisitante" name="id_equipoVisitante">
+                        <div class="form-group">
+                            <label for="equipoVisitante">Equipo visitante:</label>
+                            <select id="equipoVisitante" name="equipoVisitante">
 
-                            <?php
-                            foreach ($datosequipos as $datosequipo) {
-                            echo "<option value={$datosequipo['id_equipo']}>{$datosequipo['nombre']} </option>";
-                            }  ?>
-                        </select>
-                    </div>
+                                <?php
+                                foreach ($datosequipos as $datosequipo) {
+                                echo "<option value={$datosequipo['id_equipo']}>{$datosequipo['nombre']} </option>";
+                                }  ?>
+                            </select>
+                        </div>
 
-                    <br>
-                    <br>
-
-                    <button onclick="crearPartido()">Crear partido</button>
+                        <br>
+                    
+                        <button onclick="crearPartido()" type="submit" class="btn btn-primary" name="insert">Crear Partido</button>
+                        <br>
+                    </form>
+                    
                 </div>
 
             </div>
@@ -122,10 +125,10 @@
 
                 function crearPartido() {
 
-                    var seleccionadoVisitante = document.getElementById('id_equipoVisitante').value;
+                    var seleccionadoVisitante = document.getElementById('equipoVisitante').value;
                     document.getElementById("visitante").innerHTML = "Equipo visitante " + seleccionadoVisitante;
 
-                    var seleccionadoLocal = document.getElementById('id_equipoLocal').value;
+                    var seleccionadoLocal = document.getElementById('equipoLocal').value;
                     document.getElementById("local").innerHTML = "Equipo local " + seleccionadoLocal;
                 }
 
