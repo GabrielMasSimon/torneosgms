@@ -66,6 +66,15 @@
 
                 <div>
                 <h3>Información de partido</h3>
+                <?php
+                foreach ($datosPartidos as $datosPartido) {
+                     echo "
+                     
+                     <p>Equipo Local {$datosPartido['equipo_local']}</p>
+                     <p>Equipo Visitante {$datosPartido['equipo_visitante']}</p>
+                     ";
+                    }?> 
+
                     <h4 id="local">Equipo Local</h4>
                     <h4 id="verGolLocal">0</h4>
                     <h4 id="visitante">Equipo Visitante</h4>
@@ -103,27 +112,46 @@
 
                         <br>
                     
-                        <button onclick="crearPartido()" type="submit" class="btn btn-primary" name="insert">Crear Partido</button>
+                        <button  type="submit" class="btn btn-primary" name="insert">Crear Partido</button>
                         <br>
                     </form>
                     
                 </div>
 
+            <div>
+                    <h3>Insetar Goles</h3>
+
+                    
+                    <form action="index.php?controller=comentarios&action=insertarGoles" method="post">
+                    <div class="form-group">
+                        <label for="golLocal">E. Local:</label>
+                        <input type="number" name="golLocal" value="">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="golVisitante">E. Visitante:</label>
+                        <input type="number" name="golVisitante" value="">
+                    </div>
+
+                        <br>
+                    
+                        <button  type="submit" class="btn btn-primary" name="insert">Guardar goles</button>
+                        <br>
+                    </form>
+                    
+                    
+                </div>
+
+
+
             </div>
 
-            <button onclick="añadirGolLocal()">Añadir gol local</button>
-            <button onclick="eliminarGolLocal()">Eliminar gol Local</button>
-            <button onclick="añadirGolVisitante()">Añadir gol visitante</button>
-            <button onclick="eliminarGolVisitante()">Eliminar gol visitante</button>
+        
 
 
-            <script>
-                //Variables globales
-                var golVisitante = 0;
-                var golLocal = 0;
-
-
-                function crearPartido() {
+            <!-- <script>
+            
+              function crearPartido() {
 
                     var seleccionadoVisitante = document.getElementById('equipoVisitante').value;
                     document.getElementById("visitante").innerHTML = "Equipo visitante " + seleccionadoVisitante;
@@ -132,31 +160,7 @@
                     document.getElementById("local").innerHTML = "Equipo local " + seleccionadoLocal;
                 }
 
-
-                function añadirGolVisitante() {
-                    golVisitante = golVisitante + 1;
-                    document.getElementById("verGolVisitante").innerHTML = golVisitante;
-
-                }
-
-                function eliminarGolVisitante() {
-                    golVisitante = golVisitante - 1;
-                    document.getElementById("verGolVisitante").innerHTML = golVisitante;
-
-                }
-
-                function añadirGolLocal() {
-                    golLocal = golLocal + 1;
-                    document.getElementById("verGolLocal").innerHTML = golLocal;
-
-                }
-                function eliminarGolLocal() {
-                    golLocal = golLocal - 1;
-                    document.getElementById("verGolLocal").innerHTML = golLocal;
-
-                }
-
-            </script>
+            </script> -->
 
 
 

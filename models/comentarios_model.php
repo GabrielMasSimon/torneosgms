@@ -10,6 +10,8 @@ private $mensaje;
 private $idPartido;
 private $equipoLocal;
 private $equipoVisitante;
+private $golLocal;
+private $golVisitante;
 
 
 public function __construct(){
@@ -51,12 +53,29 @@ public function setEquipoLocal($equipoLocal) {
     $this->equipoLocal = $equipoLocal;
   }
 
-  public function getEquipoVisitante() {
+public function getEquipoVisitante() {
     return $this->equipoLocal;
   }
   
 public function setEquipoVisitante($equipoVisitante) {
     $this->equipoVisitante = $equipoVisitante;
+  }
+
+
+public function getGolLocal() {
+    return $this->golLocal;
+  }
+  
+public function setGolLocal($golLocal) {
+    $this->golLocal = $golLocal;
+  }
+
+public function getGolVisitante() {
+    return $this->golVisitante;
+  }
+  
+public function setGolVisitante($golVisitante) {
+    $this->golVisitante = $golVisitante;
   }
 
 
@@ -76,6 +95,64 @@ public function get_comentarios(){
     return $this->comentarios;
 }
 
+/**
+ * Extrae todos los comentarios de la tabla
+* @return array Bidimensional de todos los comentarios
+*/
+public function get_verEquiposXPartido(){
+    $consulta=$this->db->query("SELECT * FROM `partidos` WHERE id_partido =( SELECT MAX(id_partido) FROM `partidos`);");
+
+    while($filas=$consulta->fetch_assoc()){
+        $this->comentarios[]=$filas;
+    }
+
+    return $this->comentarios;
+}
+
+
+
+/**
+* Inserta un registro en la tabla
+* @return [false]  si no hay errores,
+*         [string] con texto de error si no ha ido bien
+*/
+public function insertarGoles() {
+
+    // $sql = "SET @maxID = (SELECT MAX(id_partido) FROM `partidos` );
+    // UPDATE `partidos` SET goles_local = 2 WHERE id_partido = @maxId;";
+   // $sql = "INSERT INTO partidos (goles_local, goles_visitante) VALUES ('{$this->golLocal}', '{$this->golVisitante}')";
+    
+    // $sql ="SELECT MAX(id_partido) FROM partidos;"
+    
+    // $result = $this->db->query($sql);
+
+    // $maxId = $result;
+
+    // $sql ="UPDATE partidos SET goles_local = '{$this->golLocal}' WHERE id_partido =  '{$this->$maxId}';
+    // UPDATE partidos SET goles_visitante = '{$this->golVisitante}' WHERE id_partido = '{$this->$maxId}';";
+
+    // $result = $this->db->query($sql);
+
+    
+    // if ($this->db->error)
+    //     return "$sql<br>{$this->db->error}";
+    // else {
+    //     return false;
+    // }
+    $this->db->query("BEGIN");
+    $result = $this->db->query("SELECT MAX(id_partido) FROM partidos;");
+    while($row = $result->fetch_assoc()) {  
+       $this->$maxId = $row['MAX(id_partido)'];
+    }
+    
+    if(
+    $this->db->query("UPDATE partidos SET goles_local = '{$this->golLocal}' WHERE id_partido =  '{$this->$maxId}';") &&
+    $this->db->query(" UPDATE partidos SET goles_visitante = '{$this->golVisitante}' WHERE id_partido = '{$this->$maxId}';")){
+        $this->db->query("COMMIT");
+    }else {        
+        $this->db->query("ROLLBACK");
+    } 
+}
 
 /**
 * Inserta un registro en la tabla

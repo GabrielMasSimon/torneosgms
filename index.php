@@ -112,6 +112,16 @@ if (isset($_GET['controller']) && isset($_GET['action']) ) {
       $controller->crearPartido();
     }
 
+    if ($_GET['action'] == "verEquiposXPartido") {
+      $controller = new comentarios_controller();
+      $controller->verEquiposXPartido();
+    }
+
+    if ($_GET['action'] == "insertarGoles") {
+      $controller = new comentarios_controller();
+      $controller->insertarGoles();
+    }
+
     }
 
     if ($_GET['controller'] == "jugadores") {

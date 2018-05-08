@@ -83,6 +83,9 @@ if ($error) {
 else {
 
 echo "FALLO en el controlador  al iniciar sesion";
+session_start();
+session_unset();
+session_destroy();
   //header('location: index.php?controller=usuarios&action=add');
 
 }

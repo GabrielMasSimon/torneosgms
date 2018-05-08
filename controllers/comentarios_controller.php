@@ -29,8 +29,8 @@ function view() {
   //Uso metodo del modelo de equipos
   $datosequipos=$equipo->get_equipos();
 
-
-  //Llamado a la vista: mostrar la pantalla
+  
+   //Llamado a la vista: mostrar la pantalla
   require_once("views/comentarios_view.phtml");
 }
 
@@ -70,6 +70,29 @@ function insert() {
  * Inserta a la taula
  * @return No
  */
+ function insertarGoles() {
+    $comentario=new comentarios_model();
+
+    if (isset($_POST['insert'])) {
+
+        $comentario->setGolLocal( $_POST['golLocal'] );
+        $comentario->setGolVisitante( $_POST['golVisitante'] );
+
+        $error = $comentario->insertarGoles();
+
+        if (!$error) {
+            header( "Location: index.php?controller=comentarios&action=view");
+        }
+        else {
+            echo $error;
+        }
+    }
+}
+
+/**
+ * Inserta a la taula
+ * @return No
+ */
  function crearPartido() {
     $comentario=new comentarios_model();
 
@@ -90,6 +113,16 @@ function insert() {
         }
     }
 }
+
+function verEquiposXPartido() {
+    $comentario=new comentarios_model();
+  
+    //Uso metodo del modelo de comentarios
+    $datosPartido=$comentario->get_verEquiposXPartido();
+
+    //Llamado a la vista: mostrar la pantalla
+    require_once("views/comentarios_view.phtml");
+  }
 
 
 /**
