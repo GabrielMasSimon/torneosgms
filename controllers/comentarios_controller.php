@@ -24,14 +24,19 @@ function view() {
   //Uso metodo del modelo de comentarios
   $datos=$comentario->get_comentarios();
 
+  $comentarios=new comentarios_model();
+  $datosPartidos = $comentarios->get_verEquiposXPartido();
   $equipo=new equipos_model();
 
   //Uso metodo del modelo de equipos
   $datosequipos=$equipo->get_equipos();
-
   
    //Llamado a la vista: mostrar la pantalla
   require_once("views/comentarios_view.phtml");
+
+
+   
+    //Uso metodo del modelo de comentarios
 }
 
 //para ver los equipos
@@ -114,15 +119,7 @@ function insert() {
     }
 }
 
-function verEquiposXPartido() {
-    $comentario=new comentarios_model();
-  
-    //Uso metodo del modelo de comentarios
-    $datosPartido=$comentario->get_verEquiposXPartido();
 
-    //Llamado a la vista: mostrar la pantalla
-    require_once("views/comentarios_view.phtml");
-  }
 
 
 /**

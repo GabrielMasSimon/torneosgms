@@ -65,20 +65,16 @@
             <div class="col-6">
 
                 <div>
-                <h3>Información de partido</h3>
-                <?php
+                    <h3>Información de partido</h3>
+                    <?php
                 foreach ($datosPartidos as $datosPartido) {
                      echo "
-                     
-                     <p>Equipo Local {$datosPartido['equipo_local']}</p>
-                     <p>Equipo Visitante {$datosPartido['equipo_visitante']}</p>
+                     <h4>Equipo Local {$datosPartido['equipo_local']} - {$datosPartido['goles_local']}</h4>
+                     <h4>Equipo Visitante {$datosPartido['equipo_visitante']} - {$datosPartido['goles_visitante']}</h4>
                      ";
-                    }?> 
+                    }?>
 
-                    <h4 id="local">Equipo Local</h4>
-                    <h4 id="verGolLocal">0</h4>
-                    <h4 id="visitante">Equipo Visitante</h4>
-                    <h4 id="verGolVisitante">0</h4>
+
                 </div>
 
                 <div>
@@ -111,42 +107,48 @@
                         </div>
 
                         <br>
-                    
-                        <button  type="submit" class="btn btn-primary" name="insert">Crear Partido</button>
+
+                        <button type="submit" class="btn btn-primary" name="insert">Crear Partido</button>
                         <br>
                     </form>
-                    
+
                 </div>
 
-            <div>
+                <div>
                     <h3>Insetar Goles</h3>
 
-                    
-                    <form action="index.php?controller=comentarios&action=insertarGoles" method="post">
-                    <div class="form-group">
-                        <label for="golLocal">E. Local:</label>
-                        <input type="number" name="golLocal" value="">
-                    </div>
 
-                    <div class="form-group">
-                        <label for="golVisitante">E. Visitante:</label>
-                        <input type="number" name="golVisitante" value="">
-                    </div>
+                    <form action="index.php?controller=comentarios&action=insertarGoles" method="post">
+                        <div class="form-group">
+                            <label for="golLocal">E. Local:</label>
+                            <?php
+                             foreach ($datosPartidos as $datosPartido) {
+                        echo "<input type='number' name='golLocal' value={$datosPartido['goles_local']}>";
+                             }?>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="golVisitante">E. Visitante:</label>
+                            <?php
+                            foreach ($datosPartidos as $datosPartido) {
+                        echo "<input type='number' name='golVisitante' value={$datosPartido['goles_visitante']}> ";
+                             }?>
+                        </div>
 
                         <br>
-                    
-                        <button  type="submit" class="btn btn-primary" name="insert">Guardar goles</button>
+
+                        <button type="submit" class="btn btn-primary" name="insert">Guardar goles</button>
                         <br>
                     </form>
-                    
-                    
+
+
                 </div>
 
 
 
             </div>
 
-        
+
 
 
             <!-- <script>

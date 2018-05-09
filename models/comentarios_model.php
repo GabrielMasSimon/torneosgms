@@ -100,8 +100,10 @@ public function get_comentarios(){
 * @return array Bidimensional de todos los comentarios
 */
 public function get_verEquiposXPartido(){
-    $consulta=$this->db->query("SELECT * FROM `partidos` WHERE id_partido =( SELECT MAX(id_partido) FROM `partidos`);");
-
+    // GOLES LOCALES, GOL VISITANTE, EQUIPO VISITANTE Y LOCAL, ID PARTIDO
+   // SELECT *,equipos.nombre as nombreequipo, jugadores.nombre as nombrejugador FROM jugadores JOIN equipos ON jugadores.id_equipo = equipos.id_equipo;
+    $consulta=$this->db->query("SELECT * FROM `partidos` WHERE id_partido = (SELECT MAX(id_partido) FROM `partidos`);");
+// la que estaba puesta  SELECT *,equip, FROM `partidos` LEFT JOIN `equipos` WHERE id_partido = 11
     while($filas=$consulta->fetch_assoc()){
         $this->comentarios[]=$filas;
     }
