@@ -67,14 +67,14 @@
                 <div>
                     <h3>Información de partido</h3>
                     <?php
-                foreach ($datosPartidos as $datosPartido) {
-                     echo "
-                     <h4>Equipo Local {$datosPartido['equipo_local']} - {$datosPartido['goles_local']}</h4>
-                     <h4>Equipo Visitante {$datosPartido['equipo_visitante']} - {$datosPartido['goles_visitante']}</h4>
-                     ";
-                    }?>
-
-
+                        foreach ($datosPartidos as $datosPartido) {
+                            if($datosPartido['equipo_local'] == $datosPartido['id_equipo']){
+                                echo "<h4>E. Local {$datosPartido['nombre']} - {$datosPartido['goles_local']}</h4>";
+                            }else{
+                                echo "<h4>E. Visitante {$datosPartido['nombre']} - {$datosPartido['goles_visitante']}</h4>";
+                            };
+                        }
+                    ?><br>
                 </div>
 
                 <div>
@@ -109,9 +109,9 @@
                         <br>
 
                         <button type="submit" class="btn btn-primary" name="insert">Crear Partido</button>
-                        <br>
+                        
                     </form>
-
+                    <br>
                 </div>
 
                 <div>
@@ -121,17 +121,25 @@
                     <form action="index.php?controller=comentarios&action=insertarGoles" method="post">
                         <div class="form-group">
                             <label for="golLocal">E. Local:</label>
-                            <?php
-                             foreach ($datosPartidos as $datosPartido) {
-                        echo "<input type='number' name='golLocal' value={$datosPartido['goles_local']}>";
-                             }?>
+
+                             <?php
+                        foreach ($datosPartidos as $datosPartido) {
+                            if($datosPartido['equipo_local'] == $datosPartido['id_equipo']){
+                                echo "<input type='number' name='golLocal' value={$datosPartido['goles_local']}>";
+                            };
+                        }
+                    ?>
+
+                           
                         </div>
 
                         <div class="form-group">
                             <label for="golVisitante">E. Visitante:</label>
                             <?php
-                            foreach ($datosPartidos as $datosPartido) {
-                        echo "<input type='number' name='golVisitante' value={$datosPartido['goles_visitante']}> ";
+                        foreach ($datosPartidos as $datosPartido) {
+                            if($datosPartido['equipo_local'] == $datosPartido['id_equipo']){
+                                echo "<input type='number' name='golVisitante' value={$datosPartido['goles_visitante']}>";
+                            };
                              }?>
                         </div>
 

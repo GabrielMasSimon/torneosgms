@@ -102,9 +102,17 @@ public function get_comentarios(){
 public function get_verEquiposXPartido(){
     // GOLES LOCALES, GOL VISITANTE, EQUIPO VISITANTE Y LOCAL, ID PARTIDO
    // SELECT *,equipos.nombre as nombreequipo, jugadores.nombre as nombrejugador FROM jugadores JOIN equipos ON jugadores.id_equipo = equipos.id_equipo;
-    $consulta=$this->db->query("SELECT * FROM `partidos` WHERE id_partido = (SELECT MAX(id_partido) FROM `partidos`);");
+    $consulta=$this->db->query("SELECT * FROM partidos INNER JOIN equipos on 
+    (partidos.equipo_local = equipos.id_equipo OR partidos.equipo_visitante = equipos.id_equipo) 
+    where partidos.id_partido = (SELECT MAX(id_partido) FROM `partidos`);");
 // la que estaba puesta  SELECT *,equip, FROM `partidos` LEFT JOIN `equipos` WHERE id_partido = 11
-    while($filas=$consulta->fetch_assoc()){
+//lito SELECT partidos.id_partido, partidos.goles_local, partidos.goles_visitante, equipos.nombre from equipos join partidos on equipos.id_equipo=partidos.equipo_local
+// lito no se si es esta o arriba son iguales SELECT partidos.id_partido, partidos.goles_local, partidos.goles_visitante, equipos.nombre AS equipo_local
+//from equipos
+//join partidos
+//on equipos.id_equipo=partidos.equipo_local
+
+  while($filas=$consulta->fetch_assoc()){
         $this->comentarios[]=$filas;
     }
 
@@ -120,27 +128,7 @@ public function get_verEquiposXPartido(){
 */
 public function insertarGoles() {
 
-    // $sql = "SET @maxID = (SELECT MAX(id_partido) FROM `partidos` );
-    // UPDATE `partidos` SET goles_local = 2 WHERE id_partido = @maxId;";
-   // $sql = "INSERT INTO partidos (goles_local, goles_visitante) VALUES ('{$this->golLocal}', '{$this->golVisitante}')";
-    
-    // $sql ="SELECT MAX(id_partido) FROM partidos;"
-    
-    // $result = $this->db->query($sql);
 
-    // $maxId = $result;
-
-    // $sql ="UPDATE partidos SET goles_local = '{$this->golLocal}' WHERE id_partido =  '{$this->$maxId}';
-    // UPDATE partidos SET goles_visitante = '{$this->golVisitante}' WHERE id_partido = '{$this->$maxId}';";
-
-    // $result = $this->db->query($sql);
-
-    
-    // if ($this->db->error)
-    //     return "$sql<br>{$this->db->error}";
-    // else {
-    //     return false;
-    // }
     $this->db->query("BEGIN");
     $result = $this->db->query("SELECT MAX(id_partido) FROM partidos;");
     while($row = $result->fetch_assoc()) {  
