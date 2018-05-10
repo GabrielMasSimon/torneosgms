@@ -17,17 +17,24 @@
         <a class="nav-link" href="index.php?controller=equipos&action=view">Clasificación</a>
       </li>
 
-    <?php if (isset ($_SESSION['usuario'])) { include 'menuAdmin_view.phtml'; } ?>
+      <?php if (isset ($_SESSION['usuario'])) { include 'menuAdmin_view.phtml'; } ?>
 
-      
-      <li class="nav-item">
-        <a class="nav-link" href="index.php?controller=usuarios&action=loginView">Login</a>
+      <?php if (!isset ($_SESSION['usuario'])) { echo " 
+
+      <li class='nav-item'>
+        <a class='nav-link' href='index.php?controller=usuarios&action=loginView'>
+        Login
+         </a>
       </li>
+
+      "; } ?>
+
       <li class="nav-item">
         <a class="nav-link" href="#">
           <?php if (isset ($_SESSION['usuario'])) { echo "Hola, ".$_SESSION['usuario']; } ?>
         </a>
       </li>
+
     </ul>
   </div>
 </nav>
