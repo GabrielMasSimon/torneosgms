@@ -38,28 +38,49 @@
                   <i class="fas fa-arrow-up"></i>
                 </a>
               </th>
-              <th class="textoCentrado">Eliminar</th>
+              <?php if (isset ($_SESSION['usuario'])) { echo "
+                  <th class='textoCentrado'>Eliminar</th>
+                "; } ?>
+            
 
             </tr>
           </thead>
           <tbody>
             <?php
                 foreach ($datos as $dato) {
-                     echo "
-                     <tr>
-                     <td>{$dato['nombre']}
-                     </td>
 
-                     <td class='textoCentrado'>
-                     {$dato['puntos']}
-                     </td>
+                  if (isset ($_SESSION['usuario'])) { 
+                    echo "
+                    <tr>
+                      <td>{$dato['nombre']}
+                      </td>
+
+                      <td class='textoCentrado'>
+                      {$dato['puntos']}
+                      </td>
 
 
                     <td class='textoCentrado'>
-                     <a href=index.php?controller=equipos&action=delete&id={$dato['id_equipo']}><i class='fas fa-trash-alt'></i></a>
+                      <a href=index.php?controller=equipos&action=delete&id={$dato['id_equipo']}><i class='fas fa-trash-alt'></i></a>
                     </td> 
- 
-                   </tr>";
+
+                  </tr>";
+                  } else{
+
+                    echo"
+                    <tr>
+                      <td>{$dato['nombre']}
+                      </td>
+
+                      <td class='textoCentrado'>
+                      {$dato['puntos']}
+                      </td>
+                    </tr>
+                    
+                    ";
+                  }
+
+                     
                    
                     }
             ?>
@@ -74,42 +95,9 @@
 
       <div class="col-4">
 
-        <!-- Button to Open the Modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCrearEquipo">
-          Agregar equipo
-        </button>
+          <?php if (isset ($_SESSION['usuario'])) { include 'añadirEquipo_view.phtml'; } ?>
 
-        <!-- The Modal -->
-        <div class="modal fade" id="ModalCrearEquipo">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-
-              <!-- Modal Header -->
-              <div class="modal-header">
-                <h4 class="modal-title">Introduce los datos del nuevo equipo</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-
-              <!-- Modal body -->
-              <div class="modal-body">
-                <form action="index.php?controller=equipos&action=insert" method="post">
-
-                  <div class="form-group">
-                    <label for="nombre">Nombre del equipo:</label>
-                    <input type="text" name="nombre" value="">
-                  </div>
-
-
-                  <button type="submit" class="btn btn-success" name="insert">Guardar</button>
-
-                </form>
-              </div>
-
-
-
-            </div>
-          </div>
-        </div>
+        
 
       </div>
     </div>

@@ -14,52 +14,65 @@
     <div class="container">
 
 
-        <h2>comentarios</h2>
+        <h2>Comentarios</h2>
 
         <div class="row">
             <div class="col-6">
 
+                <?php if (isset ($_SESSION['usuario']))
+                    { echo " <a style='
+                        float:  right;
+                        ' href='index.php?controller=comentarios&action=finalizarPartido'>Borrar todos los mensajes</a>"; 
+                    } 
+                ?>
+
+                <div class="table-responsive-sm">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Comentarios del partido</th>
+                                <?php if (isset ($_SESSION['usuario']))
+                                { echo "
+                                 <th class='textoCentrado'>Eliminar</th> ";
+                                 } ?>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                foreach ($datos as $dato) {
+
+                                    if (isset ($_SESSION['usuario'])) {  
+                                    echo "
+                                    <tr>
+                                        <td>{$dato['mensaje']}</td>
+
+                                        
+                                        <td class='textoCentrado'>
+                                            <a href=index.php?controller=comentarios&action=delete&id={$dato['id_comentario']}><i class='fas fa-trash-alt'></i></a>
+                                        </td>
+                                    
+                                    </tr>";
+
+                                }else{
+                                    echo"
+                                    <tr>
+                                        <td>{$dato['mensaje']}</td>
+                                    </tr>
+                                    ";
+                                }
+                                
+                                }
+                            ?>
+
+                        </tbody>
+                    </table>
+                </div>
 
 
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Comentarios del partido</th>
-                            <th class="textoCentrado">Eliminar</th>
+                <?php if (isset ($_SESSION['usuario'])) { include 'añadirComentario_view.phtml'; } ?>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                foreach ($datos as $dato) {
-                     echo "
-                     <tr>
-                     <td>{$dato['mensaje']}
-                     </td>
 
-                     <td class='textoCentrado'>
-                     <a href=index.php?controller=comentarios&action=delete&id={$dato['id_comentario']}><i class='fas fa-trash-alt'></i></a>
-                    </td>
-                     
-                   </tr>";
-                   
-                    }
-            ?>
-
-                    </tbody>
-                </table>
-                <!-- Añadir comentarios -->
-                <form action="index.php?controller=comentarios&action=insert" method="post">
-                    <div class="form-group">
-                        <label for="exampleTextarea">Añadir comentario</label>
-                        <textarea class="form-control" id="exampleTextarea" name="mensaje" rows="3"></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary" name="insert">Enviar</button>
-
-                </form>
-                <!-- Fin añadir comentarios -->
-                <a href='index.php?controller=comentarios&action=finalizarPartido'>Borrar todos los mensajes</a>
             </div>
 
             <div class="col-6">
@@ -74,80 +87,18 @@
                                 echo "<h4>E. Visitante {$datosPartido['nombre']} - {$datosPartido['goles_visitante']}</h4>";
                             };
                         }
-                    ?><br>
-                </div>
-
-                <div>
-                    <h3>Creación de partido</h3>
-
-                    <!-- //TODO no crear partidos con puntos, si no crear un formulario que coja  los nombres 
-                    // y crear otro formulario para elegir los equipos y ponerle los puntos que queramos -->
-
-                    <form action="index.php?controller=comentarios&action=crearPartido" method="post">
-                        <div class="form-group">
-                            <label for="equipoLocal">Equipo Local:</label>
-                            <select id="equipoLocal" name="equipoLocal">
-
-                                <?php
-                                foreach ($datosequipos as $datosequipo) {
-                                echo "<option value={$datosequipo['id_equipo']}>{$datosequipo['nombre']} </option>";
-                                }  ?>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="equipoVisitante">Equipo visitante:</label>
-                            <select id="equipoVisitante" name="equipoVisitante">
-
-                                <?php
-                                foreach ($datosequipos as $datosequipo) {
-                                echo "<option value={$datosequipo['id_equipo']}>{$datosequipo['nombre']} </option>";
-                                }  ?>
-                            </select>
-                        </div>
-
-                        <br>
-
-                        <button type="submit" class="btn btn-primary" name="insert">Crear Partido</button>
-                        
-                    </form>
-                    <br>
-                </div>
-
-                <div>
-                    <h3>Insetar Goles</h3>
-
-
-                    <form action="index.php?controller=comentarios&action=insertarGoles" method="post">
-                        <div class="form-group">
-                            <label for="golLocal">E. Local:</label>
-
-                             <?php
-                        foreach ($datosPartidos as $datosPartido) {
-                            if($datosPartido['equipo_local'] == $datosPartido['id_equipo']){
-                                echo "<input type='number' name='golLocal' value={$datosPartido['goles_local']}>";
-                            };
-                        }
                     ?>
-
-                           
-                        </div>
-
-                        <div class="form-group">
-                            <label for="golVisitante">E. Visitante:</label>
-                            <?php
-                        foreach ($datosPartidos as $datosPartido) {
-                            if($datosPartido['equipo_local'] == $datosPartido['id_equipo']){
-                                echo "<input type='number' name='golVisitante' value={$datosPartido['goles_visitante']}>";
-                            };
-                             }?>
-                        </div>
-
                         <br>
+                </div>
 
-                        <button type="submit" class="btn btn-primary" name="insert">Guardar goles</button>
-                        <br>
-                    </form>
+                <div>
+
+                    <?php if (isset ($_SESSION['usuario'])) { include 'crearPartido_view.phtml'; } ?>
+
+                </div>
+
+                <div>
+                    <?php if (isset ($_SESSION['usuario'])) { include 'insertarGoles_view.phtml'; } ?>
 
 
                 </div>
@@ -155,23 +106,6 @@
 
 
             </div>
-
-
-
-
-            <!-- <script>
-            
-              function crearPartido() {
-
-                    var seleccionadoVisitante = document.getElementById('equipoVisitante').value;
-                    document.getElementById("visitante").innerHTML = "Equipo visitante " + seleccionadoVisitante;
-
-                    var seleccionadoLocal = document.getElementById('equipoLocal').value;
-                    document.getElementById("local").innerHTML = "Equipo local " + seleccionadoLocal;
-                }
-
-            </script> -->
-
 
 
         </div>
