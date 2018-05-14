@@ -102,9 +102,7 @@ public function get_comentarios(){
 public function get_verEquiposXPartido(){
     // GOLES LOCALES, GOL VISITANTE, EQUIPO VISITANTE Y LOCAL, ID PARTIDO
    // SELECT *,equipos.nombre as nombreequipo, jugadores.nombre as nombrejugador FROM jugadores JOIN equipos ON jugadores.id_equipo = equipos.id_equipo;
-    $consulta=$this->db->query("SELECT * FROM partidos INNER JOIN equipos on 
-    (partidos.equipo_local = equipos.id_equipo OR partidos.equipo_visitante = equipos.id_equipo) 
-    where partidos.id_partido = (SELECT MAX(id_partido) FROM `partidos`);");
+    $consulta=$this->db->query("SELECT * FROM partidos LEFT JOIN equipos on (partidos.equipo_local = equipos.id_equipo OR partidos.equipo_visitante = equipos.id_equipo) where partidos.id_partido = (SELECT MAX(id_partido) FROM `partidos`);");
 // la que estaba puesta  SELECT *,equip, FROM `partidos` LEFT JOIN `equipos` WHERE id_partido = 11
 //lito SELECT partidos.id_partido, partidos.goles_local, partidos.goles_visitante, equipos.nombre from equipos join partidos on equipos.id_equipo=partidos.equipo_local
 // lito no se si es esta o arriba son iguales SELECT partidos.id_partido, partidos.goles_local, partidos.goles_visitante, equipos.nombre AS equipo_local
@@ -127,6 +125,30 @@ public function get_verEquiposXPartido(){
 *         [string] con texto de error si no ha ido bien
 */
 public function insertarGoles() {
+
+
+    $this->db->query("BEGIN");
+    $result = $this->db->query("SELECT MAX(id_partido) FROM partidos;");
+    while($row = $result->fetch_assoc()) {  
+       $this->$maxId = $row['MAX(id_partido)'];
+    }
+    
+    if(
+        // UPDATE `equipos` SET `puntos` = '1' WHERE `equipos`.`id_equipo` = 13;
+    $this->db->query("UPDATE partidos SET goles_local = '{$this->golLocal}' WHERE id_partido =  '{$this->$maxId}';") &&
+    $this->db->query(" UPDATE partidos SET goles_visitante = '{$this->golVisitante}' WHERE id_partido = '{$this->$maxId}';")){
+        $this->db->query("COMMIT");
+    }else {        
+        $this->db->query("ROLLBACK");
+    } 
+}
+
+/**
+* Inserta un registro en la tabla
+* @return [false]  si no hay errores,
+*         [string] con texto de error si no ha ido bien
+*/
+public function insertarPuntos() {
 
 
     $this->db->query("BEGIN");

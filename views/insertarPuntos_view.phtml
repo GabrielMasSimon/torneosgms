@@ -1,0 +1,31 @@
+<h3>Insertar puntos</h3>
+
+<?php
+                                foreach ($datosPartidos as $datosPartido) {
+echo"
+                                    <form action='index.php?controller=comentarios&action=insertarGoles' method='post'>
+                                    <div class='form-group'>
+                                        <label for='golLocal'>E. Local:</label>
+                                
+                                        
+                                   "; 
+                                        if($datosPartido['equipo_local'] == $datosPartido['id_equipo']){
+                                           echo" <input type='number' name='golLocal' value={$datosPartido['puntos']}> ";
+                                        } else {
+                                            echo" <input type='number' name='golLocal' value={$datosPartido['puntos']}> ";
+                                        }
+                                    
+                              
+                                  
+                                    echo"
+
+                                    <p>{$datosPartido['id_equipo']}</p>
+                                  ";
+
+                                
+                                }
+                            ?>
+
+
+
+

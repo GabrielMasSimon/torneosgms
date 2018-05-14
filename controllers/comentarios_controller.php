@@ -98,6 +98,29 @@ function insert() {
  * Inserta a la taula
  * @return No
  */
+ function insertarPuntos() {
+    $comentario=new comentarios_model();
+
+    if (isset($_POST['insert'])) {
+
+        $comentario->setPuntoLocal( $_POST['puntoLocal'] );
+        $comentario->setPuntoVisitante( $_POST['puntoVisitante'] );
+
+        $error = $comentario->insertarPuntos();
+
+        if (!$error) {
+            header( "Location: index.php?controller=comentarios&action=view");
+        }
+        else {
+            echo $error;
+        }
+    }
+}
+
+/**
+ * Inserta a la taula
+ * @return No
+ */
  function crearPartido() {
     $comentario=new comentarios_model();
 
