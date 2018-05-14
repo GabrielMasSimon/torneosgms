@@ -122,6 +122,11 @@ if (isset($_GET['controller']) && isset($_GET['action']) ) {
       $controller->insertarGoles();
     }
 
+    if ($_GET['action'] == "insertarPuntos") {
+      $controller = new comentarios_controller();
+      $controller->insertarPuntos();
+    }
+
     }
 
     if ($_GET['controller'] == "jugadores") {
