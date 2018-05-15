@@ -12,6 +12,9 @@ private $equipoLocal;
 private $equipoVisitante;
 private $golLocal;
 private $golVisitante;
+private $puntoLocal;
+private $puntoVisitante;
+
 
 
 public function __construct(){
@@ -76,6 +79,22 @@ public function getGolVisitante() {
   
 public function setGolVisitante($golVisitante) {
     $this->golVisitante = $golVisitante;
+  }
+
+public function getPuntoLocal() {
+    return $this->puntoLocal;
+  }
+  
+public function setPuntoLocal($puntoLocal) {
+    $this->puntoLocal = $puntoLocal;
+  }
+
+public function getPuntoVisitante() {
+    return $this->puntoVisitante;
+  }
+  
+public function setPuntoVisitante($puntoVisitante) {
+    $this->puntoVisitante = $puntoVisitante;
   }
 
 
@@ -158,8 +177,8 @@ public function insertarPuntos() {
     }
     
     if(
-    $this->db->query("UPDATE partidos SET goles_local = '{$this->golLocal}' WHERE id_partido =  '{$this->$maxId}';") &&
-    $this->db->query(" UPDATE partidos SET goles_visitante = '{$this->golVisitante}' WHERE id_partido = '{$this->$maxId}';")){
+    $this->db->query("UPDATE equipos SET puntos = '{$this->puntoLocal}' WHERE id_partido =  '{$this->$maxId}';") &&
+    $this->db->query(" UPDATE equipos SET puntos = '{$this->puntoVisitante}' WHERE id_partido = '{$this->$maxId}';")){
         $this->db->query("COMMIT");
     }else {        
         $this->db->query("ROLLBACK");

@@ -1,30 +1,35 @@
 <h3>Insertar puntos</h3>
 
+
+
 <?php
                                 foreach ($datosPartidos as $datosPartido) {
-echo"
-                                    <form action='index.php?controller=comentarios&action=insertarGoles' method='post'>
-                                    <div class='form-group'>
-                                        <label for='golLocal'>E. Local:</label>
-                                
-                                        
-                                   "; 
+                                   
                                         if($datosPartido['equipo_local'] == $datosPartido['id_equipo']){
-                                           echo" <input type='number' name='golLocal' value={$datosPartido['puntos']}> ";
+                                           echo" 
+                                           <form action='index.php?controller=comentarios&action=insertarPuntos' method='post'>
+                                        <div class='form-group'>
+                                            <label for='puntoLocal'>E. Local:</label>
+                                           <input type='number' name='puntoLocal' value={$datosPartido['puntos']}> ";
                                         } else {
-                                            echo" <input type='number' name='golLocal' value={$datosPartido['puntos']}> ";
+                                            echo" 
+                                            <form action='index.php?controller=comentarios&action=insertarGoles' method='post'>
+                                        <div class='form-group'>
+                                            <label for='puntoVisitante'>E. Visitante:</label>
+                                            <input type='number' name='puntoVisitante' value={$datosPartido['puntos']}> ";
                                         }
-                                    
-                              
-                                  
-                                    echo"
-
-                                    <p>{$datosPartido['id_equipo']}</p>
-                                  ";
-
                                 
+                                                               
+                                                               
                                 }
+                                
                             ?>
+
+                            <br>
+
+<button type="submit" class="btn btn-primary" name="insert">Guardar puntos</button>
+<br>
+</form>
 
 
 
