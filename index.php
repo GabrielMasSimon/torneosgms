@@ -181,6 +181,11 @@ if (isset($_GET['controller']) && isset($_GET['action']) ) {
         $controller->delete();
       }
 
+      if ($_GET['action'] == "update") {
+        $controller = new equipos_controller();
+        $controller->update();
+      }
+
       if ($_GET['action'] == "ordPuntosDesc") {
         $controller = new equipos_controller();
         $controller->ordPuntosDesc();

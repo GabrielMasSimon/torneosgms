@@ -77,6 +77,27 @@ function delete() {
 }
 
 /**
+ * Elimina una fila de la taula
+ * @return No
+ */
+ function update() {
+  if (isset($_GET['id'])) {
+    $equipo=new equipos_model();
+
+    $id = $_GET['id'];
+
+    $error = $equipo->update($id);
+
+    if (!$error) {
+        header( "Location: index.php?controller=equipos&action=view");
+    }
+    else {
+        echo $error;
+    }
+  }
+}
+
+/**
  * Muestra los equipos ordenados por puntos
  * @return No
  */

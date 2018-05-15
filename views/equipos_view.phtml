@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <title>Clasificación</title>
@@ -39,8 +39,10 @@
                 </a>
               </th>
               <?php if (isset ($_SESSION['usuario'])) { echo "
+                  <th class='textoCentrado'>E. Puntos</th>
                   <th class='textoCentrado'>Eliminar</th>
-                "; } ?>
+                                  "; } 
+               ?>
             
 
             </tr>
@@ -59,6 +61,9 @@
                       {$dato['puntos']}
                       </td>
 
+                      <td class='textoCentrado'>
+                      <a href=edicion.php?id={$dato['id_equipo']}><i class='fas fa-edit'></i></a>
+                    </td> 
 
                     <td class='textoCentrado'>
                       <a href=index.php?controller=equipos&action=delete&id={$dato['id_equipo']}><i class='fas fa-trash-alt'></i></a>
