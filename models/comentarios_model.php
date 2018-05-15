@@ -105,7 +105,7 @@ public function setPuntoVisitante($puntoVisitante) {
 * @return array Bidimensional de todos los comentarios
 */
 public function get_comentarios(){
-    $consulta=$this->db->query("select * from comentarios;");
+    $consulta=$this->db->query("SELECT * FROM comentarios ORDER BY comentarios.id_comentario DESC;");
 
     while($filas=$consulta->fetch_assoc()){
         $this->comentarios[]=$filas;
