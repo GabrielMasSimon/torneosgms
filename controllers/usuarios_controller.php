@@ -82,11 +82,12 @@ if ($error) {
 }
 else {
 
-echo "FALLO en el controlador  al iniciar sesion";
-session_start();
+echo "<script language='JavaScript'>alert('Contraseña o Usuario incorrecto');</script>"; 
+
 session_unset();
 session_destroy();
-  //header('location: index.php?controller=usuarios&action=add');
+echo "<script language='JavaScript'>setTimeout(() =>{window.location ='index.php?controller=usuarios&action=loginView'},1);</script>"; 
+  
 
 }
 }
