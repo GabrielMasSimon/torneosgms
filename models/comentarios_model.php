@@ -162,28 +162,7 @@ public function insertarGoles() {
     } 
 }
 
-/**
-* Inserta un registro en la tabla
-* @return [false]  si no hay errores,
-*         [string] con texto de error si no ha ido bien
-*/
-public function insertarPuntos() {
 
-
-    $this->db->query("BEGIN");
-    $result = $this->db->query("SELECT MAX(id_partido) FROM partidos;");
-    while($row = $result->fetch_assoc()) {  
-       $this->$maxId = $row['MAX(id_partido)'];
-    }
-    
-    if(
-    $this->db->query("UPDATE equipos SET puntos = '{$this->puntoLocal}' WHERE id_partido =  '{$this->$maxId}';") &&
-    $this->db->query(" UPDATE equipos SET puntos = '{$this->puntoVisitante}' WHERE id_partido = '{$this->$maxId}';")){
-        $this->db->query("COMMIT");
-    }else {        
-        $this->db->query("ROLLBACK");
-    } 
-}
 
 /**
 * Inserta un registro en la tabla
