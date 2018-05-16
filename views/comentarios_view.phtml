@@ -82,9 +82,9 @@
                     <?php
                         foreach ($datosPartidos as $datosPartido) {
                             if($datosPartido['equipo_local'] == $datosPartido['id_equipo']){
-                                echo "<h4>E. Local {$datosPartido['nombre']} - {$datosPartido['goles_local']} Puntos {$datosPartido['puntos']}</h4>";
+                                echo "<h4>E. Local {$datosPartido['nombre']} - {$datosPartido['goles_local']} </h4>";
                             }else{
-                                echo "<h4>E. Visitante {$datosPartido['nombre']} - {$datosPartido['goles_visitante']} Puntos {$datosPartido['puntos']}</h4>";
+                                echo "<h4>E. Visitante {$datosPartido['nombre']} - {$datosPartido['goles_visitante']} </h4>";
                             };
                         }
                     ?>
