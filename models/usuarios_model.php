@@ -73,10 +73,10 @@ class usuarios_model{
 
     // $usuarioactual = $_SESSION["usuario"];
 
-    $sql = "SELECT usuario, PASSWORD FROM usuarios WHERE usuario = '{$this->usuario}';";
+    $sql = "SELECT usuario, password FROM usuarios WHERE usuario = '{$this->usuario}';";
     $result = $this->db->query($sql);
     $row = mysqli_fetch_assoc($result);
-    $valid_password = password_verify($this->password, $row['PASSWORD']);
+    $valid_password = password_verify($this->password, $row['password']);
 
 
     if($result->num_rows > 0) {

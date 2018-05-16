@@ -3,7 +3,14 @@
 
 <head>
     <title>Torneos</title>
-    <?php include 'head_view.html';?>
+    <?php 
+    
+    include 'head_view.html';
+    
+    if (!isset ($_SESSION['usuario'])){
+        header("Refresh: 30; URL='index.php?controller=comentarios&action=view'");
+    }
+    ?>
 </head>
 
 <body>

@@ -33,9 +33,11 @@ function insert() {
     $usuarios=new usuarios_model();
 
     if (isset($_POST['insert'])) {
-        $usuarios->setUsuario( $_POST['usuario'] );
-        $usuarios->setPassword( $_POST['password'] );
-        $usuarios->setNombre( $_POST['nombre'] );
+
+      $usuarios->setNombre( $_POST['nombre'] );
+      $usuarios->setUsuario( $_POST['usuario'] );
+      $usuarios->setPassword( $_POST['password'] );
+        
 
 
         $error = $usuarios->insertar();
@@ -47,8 +49,8 @@ function insert() {
 
           $error = $usuarios->buscar_usuarios();
           if ($error) {
-            $_SESSION['usuario'] = $usuario;
-            echo "usuario existente"; 
+           $_SESSION['usuario'] = $usuario;
+           
           }else {
             header( "Location: index.php");
 
@@ -56,6 +58,7 @@ function insert() {
         }
         else {
             echo $error;
+            
         }
     }
 }
