@@ -52,7 +52,7 @@ class usuarios_model{
   *         [string] amb text d'error si no ha anat bé
   */
   public function insertar() {
-    $salt = "$1$encriptat";
+    $salt = "encriptat";
     $hashed_password = crypt($this->password, $salt);
 
     $sql = "INSERT INTO usuarios (usuario, password, nombre) VALUES ('{$this->usuario}','{$hashed_password}','{$this->nombre}')";

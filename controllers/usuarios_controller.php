@@ -43,7 +43,7 @@ function insert() {
         if (!$error) {
           $usuario = $_POST['usuario'];
           $usuarios = new usuarios_model();
-          $usuarios->setUsernombre( $usuario );
+          $usuarios->setUsuario( $usuario );
 
           $error = $usuarios->buscar_usuarios();
           if ($error) {
