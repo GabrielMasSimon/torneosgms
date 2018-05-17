@@ -65,7 +65,7 @@
 
 
 
-    Puntos: <input type="text" value="<?php echo $ObPrecio ?> " name="puntos"><br>
+    Puntos: <input type="number" value=<?php echo $ObPrecio ?>  name="puntos"><br>
     <br><br>
 
     <input type="submit" name="Guardar" value="Guardar">

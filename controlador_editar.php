@@ -33,6 +33,7 @@ return $limpiador;
 
 $puntos =limpia($_POST["puntos"]) ;
 
+
 //Comprueba si algun campo esta en blanco, en caso de que lo este, te manda a la pantalla editar
 if( empty($_POST['puntos'])  ){
   header( "Location: index.php?controller=equipos&action=view");
