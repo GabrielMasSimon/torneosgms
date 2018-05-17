@@ -50,13 +50,13 @@ function insert() {
           $error = $usuarios->buscar_usuarios();
           if ($error) {
            $_SESSION['usuario'] = $usuario;
+           header( "Location: index.php");
            
           }else {
-            header( "Location: index.php");
+           
 
           }
-        }
-        else {
+        }else {
             echo $error;
             
         }

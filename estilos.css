@@ -23,6 +23,23 @@ a:hover{
    
 }
 
+h2{
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
+.float-right{
+    float:  right;
+}
+
+.titulo{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.descripcion{
+    margin-bottom: 15px;
+}
 /* body{
     background-image: url("img/fondo.jpg");
    } */

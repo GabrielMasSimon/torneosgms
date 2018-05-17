@@ -54,17 +54,34 @@ class usuarios_model{
   public function insertar() {
     $salt = "encriptat";
     $hashed_password = crypt($this->password, $salt);
-
-    $sql = "INSERT INTO usuarios (usuario, password, nombre) VALUES ('{$this->usuario}','{$hashed_password}','{$this->nombre}')";
+    $sql = "SELECT * from usuarios";
     $result = $this->db->query($sql);
+    $ok = true;
+    while($row = $result->fetch_assoc()){
+      if($row['usuario'] === $this->usuario){
+        $ok = false;
+        echo "<script language='JavaScript'>alert('Usuario existente');</script>"; 
 
-    $_SESSION["usuario"] = $this->usuario;
-
-    if ($this->db->error)
-    return "$sql<br>{$this->db->error}";
-    else {
-      return false;
+session_unset();
+session_destroy();
+echo "<script language='JavaScript'>setTimeout(() =>{window.location ='index.php?controller=usuarios&action=registroView'},1);</script>"; 
+  
+      }
     }
+    if($ok){
+      $sql = "INSERT INTO usuarios (usuario, password, nombre) VALUES ('{$this->usuario}','{$hashed_password}','{$this->nombre}')";
+      $result = $this->db->query($sql);
+  
+      $_SESSION["usuario"] = $this->usuario;
+      header( "Location: index.php");
+  
+      if ($this->db->error){ return "$sql<br>{$this->db->error}";}
+     
+      else {
+        return false;
+      }
+    }
+
   }
 
   //Función para buscar un usuario y su contraseña en la base de datos
