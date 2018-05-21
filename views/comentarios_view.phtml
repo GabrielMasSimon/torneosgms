@@ -21,10 +21,51 @@
     <div class="container">
 
 
-        <h2>Comentarios</h2>
+        <h2>Directo</h2>
 
         <div class="row">
-            <div class="col-6">
+            <div class="col-12">
+                <?php if (isset ($_SESSION['usuario'])) { include 'crearPartido_view.phtml'; } ?>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+
+
+                <h3>Información de partido</h3>
+                <?php
+                    foreach ($datosPartidos as $datosPartido) {
+                      if($datosPartido['equipo_local'] == $datosPartido['id_equipo']){
+                           echo "<h4>E. Local {$datosPartido['nombre']} - {$datosPartido['goles_local']} </h4>";
+                       }else{
+                          echo "<h4>E. Visitante {$datosPartido['nombre']} - {$datosPartido['goles_visitante']} </h4>";
+                             };
+                        }
+                    ?>
+                    <br>
+
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-6">
+                <?php if (isset ($_SESSION['usuario'])) { include 'añadirComentario_view.phtml'; } ?>
+            </div>
+
+            <div class="col-12 col-sm-6">
+                <?php if (isset ($_SESSION['usuario'])) { include 'insertarGoles_view.phtml'; } ?>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-12">
 
                 <?php if (isset ($_SESSION['usuario']))
                     { echo " <a class='float-right' href='index.php?controller=comentarios&action=finalizarPartido'>Borrar todos los mensajes</a>"; 
@@ -75,48 +116,20 @@
                 </div>
 
 
-                <?php if (isset ($_SESSION['usuario'])) { include 'añadirComentario_view.phtml'; } ?>
 
-
-            </div>
-
-            <div class="col-6">
-
-                <div>
-                    <h3>Información de partido</h3>
-                    <?php
-                        foreach ($datosPartidos as $datosPartido) {
-                            if($datosPartido['equipo_local'] == $datosPartido['id_equipo']){
-                                echo "<h4>E. Local {$datosPartido['nombre']} - {$datosPartido['goles_local']} </h4>";
-                            }else{
-                                echo "<h4>E. Visitante {$datosPartido['nombre']} - {$datosPartido['goles_visitante']} </h4>";
-                            };
-                        }
-                    ?>
-                        <br>
-                </div>
-
-                <div>
-                    <?php if (isset ($_SESSION['usuario'])) { include 'crearPartido_view.phtml'; } ?>
-
-                </div>
-
-                <div>
-                    <?php if (isset ($_SESSION['usuario'])) { include 'insertarGoles_view.phtml'; } ?>
-
-                </div>
-
-                
 
 
             </div>
-
-
         </div>
 
 
+
+
+
+
+
     </div>
-    </div>
+
 </body>
 
 </html>
