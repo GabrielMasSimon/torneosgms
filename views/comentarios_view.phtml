@@ -24,13 +24,21 @@
         <h2>Directo</h2>
 
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 col-sm-6">
                 <?php if (isset ($_SESSION['usuario'])) { include 'crearPartido_view.phtml'; } ?>
+             </div>
+             <div class="col-12 col-sm-6">
+                 <?php if (isset ($_SESSION['usuario'])){
+                    echo "
+                    <a href='index.php?controller=comentarios&action=finalizarPartido'><button type='button' class='btn btn-secondary' data-toggle='tooltipFinalizarPartido' title='Finaliza el partido eliminando todos los comentarios' id='finalizarPartido' onclick='finalizar()' disabled>Finalizar Partido</button></a>
+                    <a href='index.php?controller=equipos&action=view'><button type='button' class='btn btn-secondary' data-toggle='tooltipPuntos' title='Te manda a la pantalla de equipos para que puedas modificar los puntos a los equipos necesarios' id='puntosPartido' disabled >Asignación de Puntos</button></a>";
+                 } ?>
+           
             </div>
         </div>
 
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 ">
 
 
                 <h3>Información de partido</h3>
@@ -46,8 +54,8 @@
                     <br>
 
             </div>
-
         </div>
+
         <div class="row">
             <div class="col-12 col-sm-6">
                 <?php if (isset ($_SESSION['usuario'])) { include 'añadirComentario_view.phtml'; } ?>
@@ -130,6 +138,49 @@
 
     </div>
 
+<script>
+    //Tooltip botón finalizar partido
+$(document).ready(function(){
+    $('[data-toggle="tooltipFinalizarPartido"]').tooltip();   
+});
+
+//Tooltip botón puntos
+$(document).ready(function(){
+    $('[data-toggle="tooltipPuntos"]').tooltip();   
+});
+
+
+function iniciar(){
+	localStorage.setItem('initialized', 'true');
+    disable();
+}
+
+function finalizar(){
+	localStorage.setItem('initialized', 'false');
+    disable();
+}
+
+function disable(){
+    setTimeout(() => {
+        if(localStorage.getItem('initialized') === 'true'){
+           
+            
+            document.querySelector('#finalizarPartido').removeAttribute('disabled');
+            document.querySelector('#puntosPartido').removeAttribute('disabled');
+            document.querySelector('#iniciarPartido').setAttribute('disabled', 'true');
+            
+        }else{
+            
+            document.querySelector('#finalizarPartido').setAttribute('disabled', 'true');
+            document.querySelector('#puntosPartido').setAttribute('disabled', 'true');
+            document.querySelector('#iniciarPartido').removeAttribute('disabled');
+        }
+    }, 2000);
+	
+    
+}
+disable();
+</script>
 </body>
 
 </html>
