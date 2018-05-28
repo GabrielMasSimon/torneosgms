@@ -40,6 +40,14 @@ h2{
 .descripcion{
     margin-bottom: 15px;
 }
+
+label{
+    width: 100px;
+}
+
+.labelNormal{
+    width: auto !important;
+}
 /* body{
     background-image: url("img/fondo.jpg");
    } */

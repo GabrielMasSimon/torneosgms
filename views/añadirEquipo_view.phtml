@@ -1,5 +1,5 @@
 <!-- Button to Open the Modal -->
-<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#ModalCrearEquipo">
+<button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#ModalCrearEquipo">
           Agregar equipo
         </button>
 
@@ -19,12 +19,12 @@
                 <form action="index.php?controller=equipos&action=insert" method="post">
 
                   <div class="form-group">
-                    <label for="nombre">Nombre del equipo:</label>
+                    <label  class="labelNormal"for="nombre">Nombre del equipo:</label>
                     <input type="text" name="nombre" value="" required>
                   </div>
 
 
-                  <button type="submit" class="btn btn-secondary" name="insert">Guardar</button>
+                  <button type="submit" class="btn btn-secondary mb-2" name="insert">Guardar</button>
 
                 </form>
               </div>

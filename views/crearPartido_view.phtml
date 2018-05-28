@@ -6,11 +6,11 @@
                     <form action="index.php?controller=comentarios&action=crearPartido" method="post">
                         <div class="form-group">
                             <label for="equipoLocal">Equipo Local:</label>
-                            <select id="equipoLocal" name="equipoLocal">
+                            <select  id="equipoLocal" name="equipoLocal">
 
                                 <?php
                                 foreach ($datosequipos as $datosequipo) {
-                                echo "<option value={$datosequipo['id_equipo']}>{$datosequipo['nombre']} </option>";
+                                echo "<option  value={$datosequipo['id_equipo']}>{$datosequipo['nombre']} </option>";
                                 }  ?>
                             </select>
                         </div>

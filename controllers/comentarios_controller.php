@@ -105,7 +105,7 @@ function insert() {
 
     if (isset($_POST['insert'])) {
 
-       
+        
         $comentario->setEquipoLocal( $_POST['equipoLocal'] );
         $comentario->setEquipoVisitante( $_POST['equipoVisitante'] );
 
@@ -123,7 +123,7 @@ function insert() {
 
             if (!$error) {
                 
-                header( "Location: index.php?controller=comentarios&action=view");
+                header( "Location: index.php?controller=comentarios&action=finalizarPartido");
             }
             else {
                 echo $error;
