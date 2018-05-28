@@ -109,15 +109,28 @@ function insert() {
         $comentario->setEquipoLocal( $_POST['equipoLocal'] );
         $comentario->setEquipoVisitante( $_POST['equipoVisitante'] );
 
-        $error = $comentario->crearPartido();
+        if ($_POST['equipoLocal'] == $_POST['equipoVisitante']) {
+          
+           echo "<script language='JavaScript'> alert('No se puede crear un partido contra un mismo equipo, dale a Eliminar partido erroneo para luego volver a crear otro partido');
+           
+           
+           setTimeout(() =>{window.location ='index.php?controller=comentarios&action=view'},1000);
+           </script>";
+           
+           
+        }else{
+            $error = $comentario->crearPartido();
 
-        if (!$error) {
-            
-            header( "Location: index.php?controller=comentarios&action=view");
+            if (!$error) {
+                
+                header( "Location: index.php?controller=comentarios&action=view");
+            }
+            else {
+                echo $error;
+            }
         }
-        else {
-            echo $error;
-        }
+
+        
     }
 }
 

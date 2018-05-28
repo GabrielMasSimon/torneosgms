@@ -31,7 +31,8 @@
                  <?php if (isset ($_SESSION['usuario'])){
                     echo "
                     <a href='index.php?controller=comentarios&action=finalizarPartido'><button type='button' class='btn btn-secondary' data-toggle='tooltipFinalizarPartido' title='Da por finalizado el partido eliminando todos los comentarios' id='finalizarPartido'  disabled>Finalizar Partido</button></a>
-                    <a href='index.php?controller=equipos&action=view'><button type='button' class='btn btn-secondary' data-toggle='tooltipPuntos' title='Te manda a la pantalla de equipos para que puedas modificar los puntos a los equipos necesarios' onclick='finalizar()' id='puntosPartido' disabled >Asignación de Puntos</button></a>";
+                    <a href='index.php?controller=equipos&action=view'><button type='button' class='btn btn-secondary' data-toggle='tooltipPuntos' title='Te manda a la pantalla de equipos para que puedas modificar los puntos a los equipos necesarios' onclick='finalizar()' id='puntosPartido' disabled >Asignación de Puntos</button></a>
+                    <button type='button' class='btn btn-secondary'  onclick='finalizar()' id='partidoErroneo' disabled >Eliminar partido erroneo</button>";
                  } ?>
            
             </div>
@@ -167,12 +168,18 @@ function disable(){
             
             document.querySelector('#finalizarPartido').removeAttribute('disabled');
             document.querySelector('#puntosPartido').removeAttribute('disabled');
+            document.querySelector('#añadirComentario').removeAttribute('disabled');
+            document.querySelector('#partidoErroneo').removeAttribute('disabled');
+            document.querySelector('#editarGoles').removeAttribute('disabled');
             document.querySelector('#iniciarPartido').setAttribute('disabled', 'true');
             
         }else{
             
             document.querySelector('#finalizarPartido').setAttribute('disabled', 'true');
             document.querySelector('#puntosPartido').setAttribute('disabled', 'true');
+            document.querySelector('#añadirComentario').setAttribute('disabled', 'true');
+            document.querySelector('#partidoErroneo').setAttribute('disabled', 'true');
+            document.querySelector('#editarGoles').setAttribute('disabled', 'true');
             document.querySelector('#iniciarPartido').removeAttribute('disabled');
         }
     }, 2000);
