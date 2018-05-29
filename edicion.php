@@ -60,18 +60,23 @@
   }
 
   ?>
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="mt-3 mb-4">Actualización de puntos</h3>
+        <form action ="controlador_editar.php?id='  <?php echo $id ?>'" method="POST">
 
-  <form action ="controlador_editar.php?id='  <?php echo $id ?>'" method="POST">
 
 
+          Puntos: <input type="number" value=<?php echo $ObPrecio ?>  name="puntos"><br>
+          <br>
 
-    Puntos: <input type="number" value=<?php echo $ObPrecio ?>  name="puntos"><br>
-    <br><br>
+          <input type="submit" name="Guardar" value="Guardar">
+          <input type="button" onClick="document.location = 'index.php?controller=equipos&action=view'" name="Cancelar" value="Cancelar">
 
-    <input type="submit" name="Guardar" value="Guardar">
-    <input type="button" onClick="document.location = 'index.php?controller=equipos&action=view'" name="Cancelar" value="Cancelar">
-
-  </form>
-
+        </form>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
