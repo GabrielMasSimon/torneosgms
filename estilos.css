@@ -55,4 +55,15 @@ label{
 
    /*login*/ 
 
+   .jumbotron{
+    background-color: #eff3f4 !important;
+    
+  }
+
+  .footerLogin {
    
+    position: absolute;
+    bottom:0;
+    width: 30% !important;
+  }
+

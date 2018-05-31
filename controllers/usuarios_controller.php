@@ -90,7 +90,7 @@ echo "<script language='JavaScript'>alert('Contraseña o Usuario incorrecto');</
 session_unset();
 session_destroy();
 echo "<script language='JavaScript'>setTimeout(() =>{window.location ='index.php?controller=usuarios&action=loginView'},1);</script>"; 
-  
+ 
 
 }
 }

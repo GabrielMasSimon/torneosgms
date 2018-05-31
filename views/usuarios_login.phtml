@@ -23,7 +23,7 @@
 
 		<div clas="row">
 			<div clas="col-12">
-
+			
 				<form action="index.php?controller=usuarios&action=login" method="post">
 					<div class="svgContainer">
 						<div>
@@ -155,7 +155,7 @@
 					</div>
 					<div class="inputGroup inputGroup2">
 						<label for="password">Password</label>
-						<input type="password" id="password" class="password" />
+						<input type="password" id="password" class="password" name="password" />
 					</div>
 					<div class="inputGroup inputGroup3">
 
@@ -173,7 +173,12 @@
 
 
 	<script src="../js/index.js"></script>
-	<?php include 'footer_view.html';?>
+	
+	<div class="footerLogin">
+		<footer>
+			<?php include 'footer_view.html';?>
+		</footer>
+	</div>
 </body>
 
 </html>
