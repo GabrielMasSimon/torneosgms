@@ -26,15 +26,15 @@
         <div class="row">
             <div class="col-12 col-sm-6">
                 <?php if (isset ($_SESSION['usuario'])) { include 'crearPartido_view.phtml'; } ?>
-             </div>
-             <div class="col-12 col-sm-6">
-                 <?php if (isset ($_SESSION['usuario'])){
+            </div>
+            <div class="col-12 col-sm-6">
+                <?php if (isset ($_SESSION['usuario'])){
                     echo "
-                    <a href='index.php?controller=comentarios&action=finalizarPartido'><button type='button' class='btn btn-secondary' data-toggle='tooltipFinalizarPartido' title='Da por finalizado el partido eliminando todos los comentarios' id='finalizarPartido'  disabled>Finalizar Partido</button></a>
-                    <a href='index.php?controller=equipos&action=view'><button type='button' class='btn btn-secondary mt-1 mb-1' data-toggle='tooltipPuntos' title='Te manda a la pantalla de equipos para que puedas modificar los puntos a los equipos necesarios' onclick='finalizar()' id='puntosPartido' disabled >Asignación de Puntos</button></a>
+                    
+                    <a href='index.php?controller=equipos&action=view'><button type='button' class='btn btn-secondary mt-1 mb-1' data-toggle='tooltipPuntos' title='Te manda a la pantalla de equipos para que puedas modificar los puntos a los equipos necesarios' onclick='finalizar()' id='puntosPartido' disabled >Finalizar partido</button></a>
                     <button type='button' class='btn btn-secondary mt-1 mb-1'  onclick='finalizar()' id='partidoErroneo' disabled >Eliminar partido erroneo</button>";
                  } ?>
-           
+
             </div>
         </div>
 
@@ -52,7 +52,7 @@
                              };
                         }
                     ?>
-                    <br>
+                <br>
 
             </div>
         </div>
@@ -77,7 +77,9 @@
             <div class="col-12">
 
                 <?php if (isset ($_SESSION['usuario']))
-                    { echo " <a class='float-right' href='index.php?controller=comentarios&action=finalizarPartido'>Borrar todos los mensajes</a>"; 
+                    { echo "
+                       
+                         <a class='float-right' href='index.php?controller=comentarios&action=finalizarPartido'  data-toggle='tooltipFinalizarPartido' title='Elimina todos los comentarios del partido' id='finalizarPartido'  >Borrar todos los comentarios</a>"; 
                     } 
                 ?>
 
@@ -85,7 +87,12 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Comentarios del partido</th>
+                                <th>Comentarios del partido
+                                    <a href='index.php?controller=comentarios&action=view' data-toggle='tooltipActualizar'
+                                        title='Actualiza los comentarios'>
+                                        <i class="fas fa-sync-alt float-right"></i>
+                                    </a>
+                                </th>
                                 <?php if (isset ($_SESSION['usuario']))
                                 { echo "
                                  <th class='textoCentrado'>Eliminar</th> ";
@@ -139,12 +146,12 @@
 
     </div>
 
-<?php if (isset ($_SESSION['usuario'])) { include 'comentariosScript_view.phtml'; } 
+    <?php if (isset ($_SESSION['usuario'])) { include 'comentariosScript_view.phtml'; } 
 
 include 'footer_view.html';?>
 
 
- 
+
 </body>
 
 </html>
