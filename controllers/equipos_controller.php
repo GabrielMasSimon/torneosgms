@@ -39,10 +39,7 @@ function insert() {
     if (isset($_POST['insert'])) {
 
         $equipo->setNombre( $_POST['nombre'] );
-        $equipo->setPuntos( $_POST['puntos'] );
-       
-      
-
+        
         $error = $equipo->insertar();
 
         if (!$error) {
@@ -56,7 +53,7 @@ function insert() {
 
 
 /**
- * Elimina una fila de la taula
+ * Elimina una fila de la tabla
  * @return No
  */
 function delete() {

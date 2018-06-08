@@ -15,7 +15,7 @@ function add() {
 
 
 /**
- * Mostra llistat
+ * Muestra la página principal
  * @return No
  */
 function view() {
